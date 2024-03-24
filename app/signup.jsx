@@ -66,9 +66,9 @@ const signup = () => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
       <ScrollView style={{ flex: 1, backgroundColor: "white" }}>
-        <View style={{ backgroundColor: "white" }}>
-          {popup ? <Toast status={status} mesage={message} /> : null}
-        </View>
+        {/* <View style={{ backgroundColor: "white" }}> */}
+        {popup ? <Toast status={status} mesage={message} /> : null}
+        {/* </View> */}
         <AuthHeader popup={false} title={"Register"} />
         <InputText
           placeholder={"Username"}

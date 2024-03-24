@@ -14,8 +14,8 @@ const Toast = ({ status, mesage }) => {
       exiting={FadeOutDown.duration(800)}
       style={{
         height: 80,
-        position: "relative",
-        // bottom: 10,
+        position: "absolute",
+        top: 10,
         backgroundColor: status ? "lightgreen" : "crimson",
         width: "95%",
         alignSelf: "center",
@@ -23,8 +23,9 @@ const Toast = ({ status, mesage }) => {
         flexDirection: "row",
         rowGap: 5,
         borderRadius: 15,
+        zIndex: 50,
+
         // opacity: 20,
-        // backfaceVisibility: "hidden",
       }}
     >
       <View

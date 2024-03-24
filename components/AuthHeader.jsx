@@ -14,6 +14,9 @@ const AuthHeader = ({ title, popup }) => {
         marginBottom: 35,
         marginTop: 15,
         width: "100%",
+        backgroundColor: "white",
+        zIndex: 0,
+        position: "relative",
       }}
     >
       {!popup ? (
