@@ -14,7 +14,8 @@ import { Colors } from "../assets/data";
 import SocialButton from "../components/SocialButton";
 import { router } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import Toast from "../components/Toast";
+import Toast from "react-native-toast-message";
+// import Toast from "../components/Toast";
 const signin = () => {
   let [email, setemail] = useState("");
   let [password, setpassword] = useState("");
@@ -33,7 +34,7 @@ const signin = () => {
 
     let bodyContent = `email=${email}&password=${password}`;
 
-    let response = await fetch("http://192.168.0.101:8080/users/signin", {
+    let response = await fetch("http://192.168.0.100:8080/users/signin", {
       method: "POST",
       body: bodyContent,
       headers: headersList,
@@ -44,6 +45,11 @@ const signin = () => {
         console.log(err);
         setstatus(false);
         setmessage(err.message);
+        Toast.show({
+          type: "error",
+          text1: "Error!",
+          text2: err.message,
+        });
         setTimeout(() => {
           setpopup(false);
         }, 2000);
@@ -56,6 +62,11 @@ const signin = () => {
       setpopup(true);
       setstatus(data.status);
       setmessage(data.message);
+      Toast.show({
+        type: "success",
+        text1: "Success!",
+        text2: data.message,
+      });
       setTimeout(() => {
         setpopup(false);
         setTimeout(() => {
@@ -71,7 +82,8 @@ const signin = () => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
       <ScrollView style={{ flex: 1, backgroundColor: "white", height: "100%" }}>
-        {popup ? <Toast status={status} mesage={message} /> : null}
+        <Toast />
+        {/* {popup ? <Toast status={status} mesage={message} /> : null} */}
         <AuthHeader title={"  Log In"} />
         {/* <Text>signin</Text>
          */}
