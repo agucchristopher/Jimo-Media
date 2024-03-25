@@ -29,7 +29,7 @@ const index = () => {
     let user = await AsyncStorage.getItem("user");
     console.log(user);
     if (user) {
-      // router.replace("/pages/home");
+      router.replace("/pages/home");
     }
   }, []);
   // }, []);
