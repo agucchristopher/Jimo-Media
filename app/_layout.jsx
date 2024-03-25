@@ -10,7 +10,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import { StatusBar } from "react-native";
 import { Colors } from "../assets/data";
-import Toast from "react-native-toast-message";
+// import Toast from "react-native-toast-message";
 // import { useColorScheme } from '@/components/useColorScheme';
 
 export {
@@ -59,7 +59,6 @@ function RootLayoutNav() {
   return (
     // <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
     <>
-      <Toast />
       <StatusBar backgroundColor={Colors.primary} />
       <Stack initialRouteName="index">
         <Stack.Screen name="index" options={{ headerShown: false }} />
