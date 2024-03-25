@@ -34,11 +34,14 @@ const signin = () => {
 
     let bodyContent = `email=${email}&password=${password}`;
 
-    let response = await fetch("http://192.168.0.101:8080/users/signin", {
-      method: "POST",
-      body: bodyContent,
-      headers: headersList,
-    })
+    let response = await fetch(
+      "https://jimo-media-backend.vercel.app/users/signin",
+      {
+        method: "POST",
+        body: bodyContent,
+        headers: headersList,
+      }
+    )
       .catch((err) => {
         setpopup(true);
         setloading(false);

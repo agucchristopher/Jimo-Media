@@ -47,8 +47,9 @@ const index = () => {
           padding: 15,
           height: "100%",
           width: "100%",
+          alignSelf: "center",
         }}
-        source={require("../assets/bg.avif")}
+        // source={require("../assets/bg.avif")}
       >
         <AnimatedText
           entering={FadeInDown}

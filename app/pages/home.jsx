@@ -24,11 +24,14 @@ const home = () => {
 
       let bodyContent = "email=aguchris740@gmail.com&content=post 11&image=";
 
-      let response = await fetch("http://192.168.0.101:8080/post/getPosts", {
-        method: "POST",
-        body: bodyContent,
-        headers: headersList,
-      });
+      let response = await fetch(
+        "https://jimo-media-backend.vercel.app/post/getPosts",
+        {
+          method: "POST",
+          body: bodyContent,
+          headers: headersList,
+        }
+      );
 
       let data = await response.json();
       console.log(data);

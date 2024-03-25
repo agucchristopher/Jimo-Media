@@ -61,7 +61,7 @@ const InputText = ({
             marginTop: 10,
             borderRadius: 10,
             alignSelf: "center",
-            color: "grey",
+            color: "#7C7C7C",
             fontFamily: "MMedium",
             alignSelf: "center",
             paddingLeft: 15,
