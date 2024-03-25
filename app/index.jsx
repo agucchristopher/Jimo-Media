@@ -25,12 +25,15 @@ const index = () => {
   let AnimatedText = Animated.createAnimatedComponent(Text);
   // useEffect(async () => {
   // await SplashScreen.preventAutoHideAsync();
-  useEffect(async () => {
-    let user = await AsyncStorage.getItem("user");
-    console.log(user);
-    if (user) {
-      router.replace("/pages/home");
-    }
+  useEffect(() => {
+    let checkUser = async () => {
+      let user = await AsyncStorage.getItem("user");
+      console.log(user);
+      if (user) {
+        router.replace("/pages/home");
+      }
+    };
+    checkUser();
   }, []);
   // }, []);
 

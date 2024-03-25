@@ -15,6 +15,25 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const home = () => {
   let [posts, setposts] = useState([]);
   useEffect(() => {
+    let getPosts = async () => {
+      let headersList = {
+        Accept: "*/*",
+        "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+        "Content-Type": "application/x-www-form-urlencoded",
+      };
+
+      let bodyContent = "email=aguchris740@gmail.com&content=post 11&image=";
+
+      let response = await fetch("http://192.168.0.101:8080/post/getPosts", {
+        method: "POST",
+        body: bodyContent,
+        headers: headersList,
+      });
+
+      let data = await response.json();
+      console.log(data);
+      setposts(data.posts);
+    };
     setTimeout(() => {
       setposts(["agucchristopher", "jimo", "cj", "042_sv", "odumo"]);
     }, 3000);
