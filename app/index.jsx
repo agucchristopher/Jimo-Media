@@ -39,7 +39,7 @@ const index = () => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <StatusBar backgroundColor={Colors.primary} />
+      {/* <StatusBar backgroundColor={Colors.primary}  /> */}
       <ImageBackground
         style={{
           flex: 1,
