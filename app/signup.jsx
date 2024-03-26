@@ -19,6 +19,7 @@ import { router } from "expo-router";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 const signup = () => {
+  console.log("Exiting Expo");
   const [selectedDate, setSelectedDate] = useState(null);
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
