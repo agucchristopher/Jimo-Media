@@ -1,4 +1,5 @@
 import {
+  Platform,
   ScrollView,
   StyleSheet,
   Text,
@@ -12,10 +13,35 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import InputText from "../components/InputText";
 import Button from "../components/Button";
 import Toast from "../components/Toast";
+import Dropdown from "../components/Dropdown";
 import { Colors } from "../assets/data";
 import { router } from "expo-router";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 const signup = () => {
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+  const handleConfirm = (date) => {
+    setSelectedDate(date);
+    hideDatePicker();
+  };
+
+  const formatDate = (date) => {
+    if (!date) return "";
+    const formattedDate = `${date.getDate()}/${
+      date.getMonth() + 1
+    }/${date.getFullYear()}`;
+    return formattedDate;
+  };
   let [username, setusername] = useState("");
   let [email, setemail] = useState("");
   let [password, setpassword] = useState("");
@@ -89,10 +115,24 @@ const signup = () => {
           type={"password"}
           onChangeText={(e) => setpassword(e)}
         />
-        <InputText
+        {Platform.OS == "ios" && (
+          <DateTimePickerModal
+            isVisible={isDatePickerVisible}
+            mode="date"
+            onConfirm={handleConfirm}
+            onCancel={hideDatePicker}
+          />
+        )}
+        <Dropdown
+          placeholder={"Date Of Birth"}
+          inputPlaceholder={
+            selectedDate ? formatDate(selectedDate) : "DD/MM/YYYY"
+          }
+        />
+        {/* <InputText
           placeholder={"Date Of Birth"}
           inputPlaceholder={"DD/MM/YYYY"}
-        />
+        /> */}
         <Button
           bg={Colors.primary}
           onPress={() => register()}
