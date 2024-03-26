@@ -15,7 +15,7 @@ const Toast = ({ status, mesage }) => {
       style={{
         height: 80,
         position: "absolute",
-        top: 10,
+        top: 25,
         backgroundColor: status ? "lightgreen" : "crimson",
         width: "95%",
         alignSelf: "center",
