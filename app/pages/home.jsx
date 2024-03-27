@@ -28,7 +28,7 @@ const home = () => {
 
     let bodyContent = "email=aguchris740@gmail.com";
 
-    let response = await fetch("http://127.0.0.1:8080/post/getPosts", {
+    let response = await fetch("http://192.168.0.101:8080/post/getPosts", {
       method: "POST",
       body: bodyContent,
       headers: headersList,

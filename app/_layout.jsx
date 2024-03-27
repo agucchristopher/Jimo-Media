@@ -16,7 +16,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  let [user, setuser] = useState(false);
+  let [user, setuser] = useState();
   const [loaded, error] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
     MBold: require("../assets/fonts/Montserrat-SemiBold.ttf"),
@@ -36,8 +36,8 @@ export default function RootLayout() {
     checkUser();
     if (loaded) {
       checkUser();
-      SplashScreen.hideAsync();
     }
+    SplashScreen.hideAsync();
   }, []);
 
   if (!loaded) {
@@ -47,12 +47,12 @@ export default function RootLayout() {
   return (
     <>
       <Stack
-        initialRouteName={user == null ? "index" : "pages"}
+        initialRouteName={user == null || undefined ? "index" : "pages"}
         screenOptions={{
           headerShown: false,
         }}
       >
-        {user == null ? (
+        {user == null || undefined ? (
           <>
             <Stack.Screen name="index" options={{ headerShown: false }} />
             <Stack.Screen name="signin" options={{ headerShown: false }} />

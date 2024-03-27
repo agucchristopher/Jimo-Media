@@ -149,6 +149,9 @@ const profile = () => {
                   router.replace("/");
                 },
               },
+              {
+                text: "No",
+              },
             ])
           }
           style={{

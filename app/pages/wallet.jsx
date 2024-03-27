@@ -52,7 +52,7 @@ const wallet = () => {
       "User-Agent": "Thunder Client (https://www.thunderclient.com)",
     };
 
-    let response = await fetch("http://localhost:8080/getUsers", {
+    let response = await fetch("http://192.168.0.101:8080/getUsers", {
       method: "POST",
       headers: headersList,
     });
@@ -61,6 +61,27 @@ const wallet = () => {
     let userz = data?.users;
     setusers(userz);
     setmodalusers(userz);
+    console.log(data);
+  };
+  let sendMoney = async () => {
+    let headersList = {
+      Accept: "*/*",
+      "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+      "Content-Type": "application/x-www-form-urlencoded",
+    };
+
+    let bodyContent =
+      "email=aguchris740@gmail.com&username=aguchrist&password=123&dob=1710953960471&to=65fc8c19215a9e4c0e9d0b37&amount=500";
+
+    let response = await fetch("http://192.168.0.101:8080/users/sendMoney", {
+      method: "POST",
+      body: bodyContent,
+      headers: headersList,
+    }).then(async (d) => {
+      await AsyncStorage.setItem(user, d?.user);
+    });
+
+    let data = await response.json();
     console.log(data);
   };
   useEffect(() => {
@@ -171,7 +192,9 @@ const wallet = () => {
             />
             <Button
               bg={Colors.primary}
-              onPress={() => setmodal(true)}
+              onPress={() => {
+                sendMoney();
+              }}
               title={"Send Money"}
             />
             <Modal

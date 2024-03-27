@@ -23,14 +23,11 @@ const Toast = ({ status, mesage }) => {
         flexDirection: "row",
         rowGap: 5,
         borderRadius: 15,
-        zIndex: 50,
-
-        // opacity: 20,
+        zIndex: 100,
       }}
     >
       <View
         style={{
-          //   backgroundColor: "red",
           width: "85%",
           alignSelf: "center",
           padding: 15,
