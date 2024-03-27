@@ -16,7 +16,7 @@ const PostContent = ({ i, liked, data }) => {
   return (
     <View
       style={{
-        height: 350,
+        height: 380,
         alignSelf: "center",
         width: Dimensions.get("window").width * 0.99,
         margin: 3,
@@ -72,7 +72,7 @@ const PostContent = ({ i, liked, data }) => {
                   justifyContent: "flex-end",
                 }}
               >
-                @{data}
+                @{data?.owner?.username}
               </Text>
             </TouchableOpacity>
             {/* <TouchableOpacity
@@ -100,7 +100,7 @@ const PostContent = ({ i, liked, data }) => {
               fontFamily: "MMedium",
             }}
           >
-            Happy Birthday to me, I wish myself all the joys on earth.
+            {data?.content}
           </Text>
         </View>
       </View>

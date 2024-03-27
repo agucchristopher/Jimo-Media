@@ -19,7 +19,7 @@ import { router } from "expo-router";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 const signup = () => {
-  console.log("Exiting Expo");
+  // console.log("Exiting Expo");
   const [selectedDate, setSelectedDate] = useState(null);
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
@@ -41,6 +41,7 @@ const signup = () => {
     const formattedDate = `${date.getDate()}/${
       date.getMonth() + 1
     }/${date.getFullYear()}`;
+    // setdob(fi)
     return formattedDate;
   };
   let [username, setusername] = useState("");
@@ -51,6 +52,7 @@ const signup = () => {
   let [popup, setpopup] = useState(false);
   let [status, setstatus] = useState(false);
   let [message, setmessage] = useState("");
+  // let []
   let register = async () => {
     console.log("..");
     setloading(true);
@@ -62,14 +64,11 @@ const signup = () => {
 
     let bodyContent = `email=${email}&username=${username}&password=${password}&dob=1710953960471`;
 
-    let response = await fetch(
-      "https://jimo-media-backend.vercel.app/users/signup",
-      {
-        method: "POST",
-        body: bodyContent,
-        headers: headersList,
-      }
-    )
+    let response = await fetch("http://127.0.0.1:8080/users/signup", {
+      method: "POST",
+      body: bodyContent,
+      headers: headersList,
+    })
       .catch((err) => {
         setpopup(true);
         setloading(false);
@@ -116,19 +115,20 @@ const signup = () => {
           type={"password"}
           onChangeText={(e) => setpassword(e)}
         />
-        {Platform.OS == "ios" && (
-          <DateTimePickerModal
-            isVisible={isDatePickerVisible}
-            mode="date"
-            onConfirm={handleConfirm}
-            onCancel={hideDatePicker}
-          />
-        )}
+        {/* {Platform.OS == "android" && ( */}
+        <DateTimePickerModal
+          isVisible={isDatePickerVisible}
+          mode="date"
+          onConfirm={handleConfirm}
+          onCancel={hideDatePicker}
+        />
+        {/* )} */}
         <Dropdown
           placeholder={"Date Of Birth"}
           inputPlaceholder={
             selectedDate ? formatDate(selectedDate) : "DD/MM/YYYY"
           }
+          onPress={showDatePicker}
         />
         {/* <InputText
           placeholder={"Date Of Birth"}
