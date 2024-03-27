@@ -61,7 +61,7 @@ const wallet = () => {
             marginTop: 30,
           }}
         >
-          Welcome, Christopher
+          Welcome, @{user?.username}
         </Text>
         <Text
           style={{
