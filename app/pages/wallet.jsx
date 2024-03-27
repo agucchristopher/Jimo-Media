@@ -193,7 +193,8 @@ const wallet = () => {
             <Button
               bg={Colors.primary}
               onPress={() => {
-                sendMoney();
+                setloading(true);
+                sendMoney().then(() => setloading(false));
               }}
               title={"Send Money"}
             />
