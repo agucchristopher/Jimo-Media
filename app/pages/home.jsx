@@ -59,7 +59,7 @@ const home = () => {
               setrefreshing(true);
               getPosts().finally(() => setrefreshing(false));
             }}
-            refreshing={true}
+            refreshing={refreshing}
           />
         }
       >
@@ -79,7 +79,17 @@ const home = () => {
             );
           }}
         />
-        {!loading && posts.length == [] ? <Text>No Posts to show</Text> : null}
+        {!loading && posts.length == [] ? (
+          <Text
+            style={{
+              margin: 15,
+              textAlign: "center",
+              fontFamily: "MMedium",
+            }}
+          >
+            No Posts to show
+          </Text>
+        ) : null}
         {loading ? (
           <View style={{ marginTop: 15 }}>
             <ActivityIndicator color={Colors.primary} />

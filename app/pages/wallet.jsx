@@ -39,16 +39,37 @@ const wallet = () => {
   const [sendAmount, setsendamount] = useState(false);
   const [reason, setfor] = useState(false);
   const [user, setuser] = useState();
+  const [users, setusers] = useState([]);
+  const [modalusers, setmodalusers] = useState(users);
   let getUser = async () => {
     let u = await AsyncStorage.getItem("user");
     setuser(JSON.parse(u));
     console.log("U: ", JSON.parse(u));
   };
+  let getUsers = async () => {
+    let headersList = {
+      Accept: "*/*",
+      "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+    };
+
+    let response = await fetch("http://localhost:8080/getUsers", {
+      method: "POST",
+      headers: headersList,
+    });
+
+    let data = await response.json();
+    let userz = data?.users;
+    setusers(userz);
+    setmodalusers(userz);
+    console.log(data);
+  };
   useEffect(() => {
     setloading(false);
     getUser();
+    getUsers();
   }, []);
 
+  console.log("Users: ", " ", users);
   return (
     <SafeAreaView style={{ flex: 1, padding: 0, backgroundColor: "white" }}>
       <ScrollView style={{ flex: 1, backgroundColor: "white", padding: 15 }}>
@@ -320,20 +341,20 @@ const wallet = () => {
                       paddingLeft: 15,
                     }}
                     onChangeText={(e) => {
-                      let nb = banks?.filter((bank) =>
-                        bank.name
+                      let nb = modalusers?.filter((bank) =>
+                        bank.username
                           .toLocaleLowerCase()
                           .includes(e.toLocaleLowerCase())
                       );
                       if (nb.length > 0) {
-                        setmodalBanks(banks);
+                        setmodalusers(users);
                       }
-                      setmodalBanks(nb);
+                      setmodalusers(nb);
                     }}
                   ></TextInput>
                   <FlatList
                     contentContainerStyle={{ padding: 10 }}
-                    data={modalBanks}
+                    data={modalusers}
                     showsHorizontalScrollIndicator={false}
                     showsVerticalScrollIndicator={false}
                     renderItem={({ item }) => {
@@ -346,10 +367,10 @@ const wallet = () => {
                             margin: 5,
                           }}
                           onPress={() => {
-                            setusername(item.name);
+                            setusername(item.username);
                             // setbid(item.code);
                             setusernameModal(false);
-                            setmodalBanks(banks);
+                            // setmodalBanks(banks);
                           }}
                         >
                           {/* <Image
@@ -371,7 +392,7 @@ const wallet = () => {
                               fontSize: 18,
                             }}
                           >
-                            {item.name}
+                            {item.username}
                           </Text>
                         </TouchableOpacity>
                       );
