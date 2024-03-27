@@ -1,4 +1,5 @@
 import {
+  Alert,
   FlatList,
   Image,
   ScrollView,
@@ -7,15 +8,26 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AuthHeader from "../../components/AuthHeader";
 import { Svg, Path } from "react-native-svg";
 import { router } from "expo-router";
-import AsynStorage from "@react-native-async-storage/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 const profile = () => {
+  let [user, setuser] = useState();
+  let getUser = async () => {
+    let u = await AsyncStorage.getItem("user");
+    setuser(JSON.parse(u));
+    console.log("U: ", JSON.parse(u));
+  };
+
   let title = "Settings";
   let popup;
+  useEffect(() => {
+    getUser();
+  }, []);
+
   return (
     <SafeAreaView style={{ flex: 1, padding: 0, backgroundColor: "white" }}>
       <View
@@ -86,7 +98,7 @@ const profile = () => {
               style={{ fontFamily: "MBold", fontSize: 18 }}
               numberOfLines={3}
             >
-              @agucchristopher
+              @{user?.username}
             </Text>
             <Text
               style={{ fontFamily: "MMedium", color: "grey", fontSize: 16 }}
@@ -95,7 +107,7 @@ const profile = () => {
             </Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={{
             width: "99%",
             // backgroundColor: "red",
@@ -126,12 +138,19 @@ const profile = () => {
               View your friend list
             </Text>
           </View>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity
-          onPress={async () => {
-            await AsynStorage.clear();
-            router.replace("/");
-          }}
+          onPress={() =>
+            Alert.alert("Log Out?", "Are you sure you want to log out?", [
+              {
+                text: "Yes",
+                onPress: async () => {
+                  await AsyncStorage.clear();
+                  router.replace("/");
+                },
+              },
+            ])
+          }
           style={{
             width: "99%",
             // backgroundColor: "red",

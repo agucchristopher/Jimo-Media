@@ -23,7 +23,7 @@ const Post = () => {
         width: Dimensions.get("screen").width * 0.9,
       }}
     >
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => router.push("/profile")}>
         <Image
           source={require("./../assets/pfp.jpg")}
           style={{

@@ -20,11 +20,11 @@ const PostContent = ({ i, liked, data }) => {
         alignSelf: "center",
         width: Dimensions.get("window").width * 0.99,
         margin: 3,
-        marginTop: i === 0 ? 0 : 15,
+        marginTop: i == 0 ? 20 : 15,
         backgroundColor: "#fff",
         // borderRadius: 5,
         padding: 15,
-        borderTopWidth: 0.75,
+        borderTopWidth: i == 0 ? 0 : 0.75,
       }}
     >
       <View
@@ -36,7 +36,7 @@ const PostContent = ({ i, liked, data }) => {
           marginBottom: 10,
         }}
       >
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => router.push("/profile")}>
           <Image
             source={require("./../assets/pfp.jpg")}
             style={{

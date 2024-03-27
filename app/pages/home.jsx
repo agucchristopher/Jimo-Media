@@ -1,6 +1,7 @@
 import {
   ActivityIndicator,
   FlatList,
+  RefreshControl,
   ScrollView,
   StyleSheet,
   Text,
@@ -16,30 +17,31 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const home = () => {
   let [posts, setposts] = useState([]);
   let [loading, setloading] = useState(false);
-  useEffect(() => {
-    let getPosts = async () => {
-      setloading(true);
-      let headersList = {
-        Accept: "*/*",
-        "User-Agent": "Thunder Client (https://www.thunderclient.com)",
-        "Content-Type": "application/x-www-form-urlencoded",
-      };
-
-      let bodyContent = "email=aguchris740@gmail.com";
-
-      let response = await fetch("http://127.0.0.1:8080/post/getPosts", {
-        method: "POST",
-        body: bodyContent,
-        headers: headersList,
-      }).finally(() => setloading(false));
-
-      let data = await response.json();
-      console.log("data: ", data);
-      let newposts = data.posts;
-      // setposts(data.posts);
-      setposts(newposts);
-      console.log("first", posts);
+  let [refreshing, setrefreshing] = useState(false);
+  let getPosts = async () => {
+    setloading(true);
+    let headersList = {
+      Accept: "*/*",
+      "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+      "Content-Type": "application/x-www-form-urlencoded",
     };
+
+    let bodyContent = "email=aguchris740@gmail.com";
+
+    let response = await fetch("http://127.0.0.1:8080/post/getPosts", {
+      method: "POST",
+      body: bodyContent,
+      headers: headersList,
+    }).finally(() => setloading(false));
+
+    let data = await response.json();
+    console.log("data: ", data);
+    let newposts = data.posts;
+    // setposts(data.posts);
+    setposts(newposts);
+    console.log("first", posts);
+  };
+  useEffect(() => {
     getPosts();
     setTimeout(() => {}, 3000);
   }, []);
@@ -49,10 +51,21 @@ const home = () => {
   }, []);
   return (
     <SafeAreaView style={{ flex: 1, padding: 0, backgroundColor: "white" }}>
-      <ScrollView style={{ flex: 1, backgroundColor: "white", padding: 15 }}>
+      <ScrollView
+        style={{ flex: 1, backgroundColor: "white", padding: 5 }}
+        refreshControl={
+          <RefreshControl
+            onRefresh={() => {
+              setrefreshing(true);
+              getPosts().finally(() => setrefreshing(false));
+            }}
+            refreshing={true}
+          />
+        }
+      >
         <Post />
-        <Status />
-
+        {/* <Status /> */}
+        <View style={{ width: "100%", borderWidth: 0.75, marginTop: 25 }} />
         <FlatList
           data={posts}
           renderItem={({ index, item }) => {
@@ -66,6 +79,7 @@ const home = () => {
             );
           }}
         />
+        {!loading && posts.length == [] ? <Text>No Posts to show</Text> : null}
         {loading ? (
           <View style={{ marginTop: 15 }}>
             <ActivityIndicator color={Colors.primary} />

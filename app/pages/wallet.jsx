@@ -19,6 +19,7 @@ import Button from "../../components/Button";
 import { Svg, Path } from "react-native-svg";
 import Dropdown from "../../components/Dropdown";
 import banks from "../../assets/banks.json";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 const wallet = () => {
   let [activeTab, setActiveTab] = useState("Send Money");
   const [modal, setmodal] = useState(false);
@@ -37,8 +38,15 @@ const wallet = () => {
   const [error, seterror] = useState(false);
   const [sendAmount, setsendamount] = useState(false);
   const [reason, setfor] = useState(false);
+  const [user, setuser] = useState();
+  let getUser = async () => {
+    let u = await AsyncStorage.getItem("user");
+    setuser(JSON.parse(u));
+    console.log("U: ", JSON.parse(u));
+  };
   useEffect(() => {
     setloading(false);
+    getUser();
   }, []);
 
   return (
@@ -66,7 +74,7 @@ const wallet = () => {
             marginBottom: 35,
           }}
         >
-          Balance: #20,000
+          Balance: ₦{user?.balance}
         </Text>
         <View
           style={{
