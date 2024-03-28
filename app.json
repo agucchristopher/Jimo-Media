@@ -41,9 +41,7 @@
       }
     },
     "owner": "devkay",
-    "runtimeVersion": {
-      "policy": "appVersion"
-    },
+    "runtimeVersion": "1.0.0",
     "updates": {
       "url": "https://u.expo.dev/362136a3-dad4-440f-8993-6f7fcb7786c6"
     }
