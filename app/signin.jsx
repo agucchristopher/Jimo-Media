@@ -34,7 +34,7 @@ const signin = () => {
 
     let bodyContent = `email=${email}&password=${password}`;
 
-    let response = await fetch("http://localhost:8080/users/signin", {
+    let response = await fetch("https://jimo-media-backend.vercel.app/users/signin", {
       method: "POST",
       body: bodyContent,
       headers: headersList,
