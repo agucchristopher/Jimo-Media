@@ -39,7 +39,6 @@ const index = () => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      {/* <StatusBar backgroundColor={Colors.primary}  /> */}
       <ImageBackground
         style={{
           flex: 1,
@@ -49,8 +48,11 @@ const index = () => {
           width: "100%",
           alignSelf: "center",
         }}
-        // source={require("../assets/bg.avif")}
       >
+        <StatusBar
+          barStyle={"light-content"}
+          backgroundColor={Colors.primary}
+        />
         <AnimatedText
           entering={FadeInDown}
           style={{

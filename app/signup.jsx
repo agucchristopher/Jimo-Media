@@ -64,14 +64,11 @@ const signup = () => {
 
     let bodyContent = `email=${email}&username=${username}&password=${password}&dob=1710953960471`;
 
-    let response = await fetch(
-      "https://jimo-media-backend.vercel.app/users/signup",
-      {
-        method: "POST",
-        body: bodyContent,
-        headers: headersList,
-      }
-    )
+    let response = await fetch("http://127.0.0.1:8080/users/signup", {
+      method: "POST",
+      body: bodyContent,
+      headers: headersList,
+    })
       .catch((err) => {
         setpopup(true);
         setloading(false);

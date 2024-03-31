@@ -5,7 +5,7 @@ import { Dimensions, Platform, StatusBar, Text } from "react-native";
 export default () => {
   return (
     <>
-      <StatusBar backgroundColor={"white"} />
+      {/* <StatusBar backgroundColor={"white"} /> */}
 
       <Tabs
         screenOptions={{

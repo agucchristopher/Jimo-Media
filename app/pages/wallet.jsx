@@ -52,13 +52,10 @@ const wallet = () => {
       "User-Agent": "Thunder Client (https://www.thunderclient.com)",
     };
 
-    let response = await fetch(
-      "https://jimo-media-backend.vercel.app/getUsers",
-      {
-        method: "POST",
-        headers: headersList,
-      }
-    );
+    let response = await fetch("http://127.0.0.1:8080/getUsers", {
+      method: "POST",
+      headers: headersList,
+    });
 
     let data = await response.json();
     let userz = data?.users;
@@ -76,14 +73,11 @@ const wallet = () => {
     let bodyContent =
       "email=aguchris740@gmail.com&username=aguchrist&password=123&dob=1710953960471&to=65fc8c19215a9e4c0e9d0b37&amount=500";
 
-    let response = await fetch(
-      "https://jimo-media-backend.vercel.app/users/sendMoney",
-      {
-        method: "POST",
-        body: bodyContent,
-        headers: headersList,
-      }
-    ).then(async (d) => {
+    let response = await fetch("http://127.0.0.1:8080/users/sendMoney", {
+      method: "POST",
+      body: bodyContent,
+      headers: headersList,
+    }).then(async (d) => {
       await AsyncStorage.setItem(user, JSON.stringify(d?.user));
     });
 

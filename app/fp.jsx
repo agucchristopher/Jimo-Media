@@ -24,7 +24,7 @@ const fp = () => {
 
     let bodyContent = `email=${email}`;
 
-    let response = await fetch("http://localhost:8080/users/forgetPassword", {
+    let response = await fetch("http://127.0.0.1:8080/users/forgetPassword", {
       method: "POST",
       body: bodyContent,
       headers: headersList,
