@@ -58,18 +58,52 @@ const profile = ({ popup }) => {
         <View style={{ width: "20%" }}></View>
       </View>
       <ScrollView style={{ flex: 1, backgroundColor: "white", padding: 10 }}>
-        {/* <AuthHeader title={""} /> */}
-        <Image
-          source={require("../assets/pfp.jpg")}
+        {/* Picture */}
+        <TouchableOpacity
           style={{
             height: 150,
             width: 150,
-            resizeMode: "cover",
             borderRadius: 1000,
-            alignSelf: "flex-start",
-            margin: 15,
+            backgroundColor: "red",
+            alignItems: "center",
+            justifyContent: "center",
+            marginLeft: 10,
+            marginTop: 10,
           }}
-        />
+        >
+          <Image
+            source={require("../assets/pfp.jpg")}
+            style={{
+              height: 150,
+              width: 150,
+              resizeMode: "cover",
+              borderRadius: 1000,
+              alignSelf: "flex-start",
+            }}
+          />
+        </TouchableOpacity>
+        <Text
+          style={{
+            fontFamily: "PBold",
+            marginLeft: 15,
+            marginTop: 10,
+            alignSelf: "flex-start",
+            fontSize: 20,
+          }}
+        >
+          Sarah John
+        </Text>
+        <Text
+          style={{
+            fontFamily: "MMedium",
+            marginLeft: 15,
+            marginTop: 10,
+            alignSelf: "flex-start",
+            fontSize: 20,
+          }}
+        >
+          Lab Scientist ❤️‍🔥❤️‍🔥
+        </Text>
       </ScrollView>
     </SafeAreaView>
   );
