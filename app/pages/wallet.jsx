@@ -38,14 +38,42 @@ const wallet = () => {
   const [error, seterror] = useState(false);
   const [sendAmount, setsendamount] = useState(false);
   const [reason, setfor] = useState(false);
+  const [to, setto] = useState(false);
   const [user, setuser] = useState();
   const [users, setusers] = useState([]);
   const [modalusers, setmodalusers] = useState(users);
+  const [sendResponse, setSendResponse] = useState("");
   let getUser = async () => {
     let u = await AsyncStorage.getItem("user");
+    u = JSON.parse(u);
+    let headersList = {
+      Accept: "*/*",
+      "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+      "Content-Type": "application/x-www-form-urlencoded",
+    };
+
+    let bodyContent = `email=${u?.email}`;
+
+    let response = await fetch("http://192.168.43.144:8080/getUser", {
+      method: "POST",
+      body: bodyContent,
+      headers: headersList,
+    }).finally(() => setloading(false));
+
+    let data = await response.json();
+    console.log("data: ", data);
+    if (data.status) {
+      let jsonUser = JSON.stringify(data?.user);
+      await AsyncStorage.setItem("user", jsonUser);
+    }
+    u = await AsyncStorage.getItem("user");
     setuser(JSON.parse(u));
-    console.log("U: ", JSON.parse(u));
   };
+  // let getUser = async () => {
+  //   let u = await AsyncStorage.getItem("user");
+  //   setuser(JSON.parse(u));
+  //   console.log("U: ", JSON.parse(u));
+  // };
   let getUsers = async () => {
     let headersList = {
       Accept: "*/*",
@@ -59,35 +87,46 @@ const wallet = () => {
 
     let data = await response.json();
     let userz = data?.users;
-    setusers(userz);
-    setmodalusers(userz);
-    console.log(data);
+    let userz2 = userz?.filter((bank) =>
+      bank.username.toLocaleLowerCase().includes("")
+    );
+    setusers(userz2);
+    setmodalusers(userz2);
+    console.log(data, userz2);
   };
   let sendMoney = async () => {
+    setloading(true);
     let headersList = {
       Accept: "*/*",
       "User-Agent": "Thunder Client (https://www.thunderclient.com)",
       "Content-Type": "application/x-www-form-urlencoded",
     };
 
-    let bodyContent =
-      "email=aguchris740@gmail.com&username=aguchrist&password=123&dob=1710953960471&to=65fc8c19215a9e4c0e9d0b37&amount=500";
+    let bodyContent = `email=${user?.email}&amount=${sendAmount}&to=${to}`;
 
     let response = await fetch("http://192.168.43.144:8080/users/sendMoney", {
       method: "POST",
       body: bodyContent,
       headers: headersList,
-    }).then(async (d) => {
-      await AsyncStorage.setItem(user, JSON.stringify(d?.user));
     });
+    // .then(async (d) => {
+
+    // });
 
     let data = await response?.json();
     console.log(data);
+    if (data.status) {
+      let jsonUser = JSON.stringify(data?.user);
+      console.log(jsonUser);
+      // await AsyncStorage.clear();
+      await AsyncStorage.setItem("user", jsonUser).then(() => getUser());
+      setSendResponse(data?.message);
+      setmodal(true);
+    }
   };
   useEffect(() => {
     setloading(false);
-    getUser();
-    getUsers();
+    getUser().then(() => getUsers());
   }, []);
 
   console.log("Users: ", " ", users);
@@ -196,6 +235,7 @@ const wallet = () => {
                 setloading(true);
                 sendMoney().then(() => setloading(false));
               }}
+              loading={loading}
               title={"Send Money"}
             />
             <Modal
@@ -278,7 +318,7 @@ const wallet = () => {
                       justifyContent: "center",
                     }}
                   >
-                    Your transfer to Precious Ben is succesfull.
+                    {sendResponse}
                   </Text>
                 </View>
               </View>
@@ -392,6 +432,7 @@ const wallet = () => {
                           }}
                           onPress={() => {
                             setusername(item.username);
+                            setto(item?._id);
                             // setbid(item.code);
                             setusernameModal(false);
                             // setmodalBanks(banks);

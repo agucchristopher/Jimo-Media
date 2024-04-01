@@ -41,8 +41,33 @@ const home = () => {
     setposts(newposts);
     console.log("first", posts);
   };
+  let getUser = async () => {
+    let u = await AsyncStorage.getItem("user");
+    u = JSON.parse(u);
+    let headersList = {
+      Accept: "*/*",
+      "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+      "Content-Type": "application/x-www-form-urlencoded",
+    };
+
+    let bodyContent = `email=${u?.email}`;
+
+    let response = await fetch("http://192.168.43.144:8080/getUser", {
+      method: "POST",
+      body: bodyContent,
+      headers: headersList,
+    }).finally(() => setloading(false));
+
+    let data = await response.json();
+    console.log("data: ", data);
+    if (data.status) {
+      let jsonUser = JSON.stringify(data?.user);
+      await AsyncStorage.setItem("user", jsonUser);
+    }
+  };
   useEffect(() => {
     getPosts();
+    getUser();
     setTimeout(() => {}, 3000);
   }, []);
   useEffect(async () => {
