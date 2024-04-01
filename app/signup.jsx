@@ -64,7 +64,7 @@ const signup = () => {
 
     let bodyContent = `email=${email}&username=${username}&password=${password}&dob=1710953960471`;
 
-    let response = await fetch("http://127.0.0.1:8080/users/signup", {
+    let response = await fetch("http://192.168.43.144:8080/users/signup", {
       method: "POST",
       body: bodyContent,
       headers: headersList,

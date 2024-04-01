@@ -34,7 +34,7 @@ const signin = () => {
 
     let bodyContent = `email=${email}&password=${password}`;
 
-    let response = await fetch("http://127.0.0.1:8080/users/signin", {
+    let response = await fetch("http://192.168.43.144:8080/users/signin", {
       method: "POST",
       body: bodyContent,
       headers: headersList,

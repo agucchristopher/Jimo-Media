@@ -7,7 +7,7 @@ import {
   TextInput,
   View,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AuthHeader from "../components/AuthHeader";
 import InputText from "../components/InputText";
@@ -17,13 +17,62 @@ import { router } from "expo-router";
 const otp = () => {
   let { width, height } = Dimensions.get("screen");
   const [SelectedItem, setSelectedItem] = React.useState(0);
+  let [otp, setOtp] = React.useState([{}, {}, {}, {}, {}]);
   let inputRef = React.useRef();
   React.useEffect(() => {
     inputRef.current.focus();
     console.log(this);
   }, []);
+  const [email, setemail] = useState("aguchris740@gmail.com");
+  const [loading, setloading] = useState(false);
+  const [popup, setpopup] = useState("");
+  const [message, setmessage] = useState("");
+  const [status, setstatus] = useState(false);
+  let verifyOtp = async () => {
+    console.log("..");
+    setloading(true);
+    let headersList = {
+      Accept: "*/*",
+      "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+      "Content-Type": "application/x-www-form-urlencoded",
+    };
+
+    let bodyContent = `email=${email}`;
+
+    let response = await fetch("http://192.168.43.144:8080/users/verifyOtp", {
+      method: "POST",
+      body: bodyContent,
+      headers: headersList,
+    })
+      .catch((err) => {
+        setpopup(true);
+        setloading(false);
+        console.log(err);
+        setstatus(false);
+        setmessage(err.message);
+        setTimeout(() => {
+          setpopup(false);
+        }, 2000);
+      })
+      .finally(() => setloading(false));
+
+    let data = await response.json();
+    console.log(data);
+    if (data) {
+      setmessage(data.message);
+      setstatus(data.status);
+      setpopup(true);
+      setTimeout(() => {
+        setTimeout(() => {
+          setpopup(false);
+          data.status ? router.replace("/resetPassword") : null;
+        }, 1000);
+      }, 2000);
+    }
+  };
   return (
     <ScrollView style={{ flex: 1, backgroundColor: "white" }}>
+      {popup ? <Toast mesage={message} status={status} /> : null}
       <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
         <AuthHeader title={""} />
         <Text
@@ -123,7 +172,8 @@ const otp = () => {
         </Text>
         <Button
           title={"Next"}
-          onPress={() => router.replace("/resetPassword")}
+          loading={loading}
+          onPress={() => verifyOtp()}
           bg={Colors.primary}
         />
       </SafeAreaView>

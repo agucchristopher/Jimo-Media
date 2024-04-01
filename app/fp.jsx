@@ -24,11 +24,14 @@ const fp = () => {
 
     let bodyContent = `email=${email}`;
 
-    let response = await fetch("http://127.0.0.1:8080/users/forgetPassword", {
-      method: "POST",
-      body: bodyContent,
-      headers: headersList,
-    })
+    let response = await fetch(
+      "http://192.168.43.144:8080/users/forgetPassword",
+      {
+        method: "POST",
+        body: bodyContent,
+        headers: headersList,
+      }
+    )
       .catch((err) => {
         setpopup(true);
         setloading(false);
@@ -37,7 +40,7 @@ const fp = () => {
         setmessage(err.message);
         setTimeout(() => {
           setpopup(false);
-        });
+        }, 2000);
       })
       .finally(() => setloading(false));
 
@@ -48,8 +51,8 @@ const fp = () => {
       setstatus(data.status);
       setpopup(true);
       setTimeout(() => {
-        setpopup(false);
         setTimeout(() => {
+          setpopup(false);
           data.status ? router.push("/otp") : null;
         }, 1000);
       }, 2000);
@@ -57,8 +60,8 @@ const fp = () => {
   };
   return (
     <ScrollView style={{ flex: 1, backgroundColor: "white" }}>
+      {popup ? <Toast mesage={message} status={status} /> : null}
       <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
-        {popup ? <Toast mesage={message} status={status} /> : null}
         <AuthHeader title={""} />
         <Text
           style={{
@@ -66,7 +69,6 @@ const fp = () => {
             color: "black",
             fontFamily: "PBold",
             textAlign: "center",
-            // fontWeight: "bold",
           }}
         >
           Forgot Password
@@ -80,7 +82,6 @@ const fp = () => {
             margin: 15,
             marginTop: 0,
             marginBottom: 35,
-            // fontWeight: "bold",
           }}
         >
           Enter the email address linked to your account and we will send you a

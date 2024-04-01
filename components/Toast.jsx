@@ -1,4 +1,10 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import Animated, {
   FadeInDown,
   FadeInUp,
@@ -15,7 +21,7 @@ const Toast = ({ status, mesage }) => {
       style={{
         height: 80,
         position: "absolute",
-        top: 25,
+        top: 30,
         backgroundColor: status ? "lightgreen" : "crimson",
         width: "95%",
         alignSelf: "center",
@@ -26,6 +32,7 @@ const Toast = ({ status, mesage }) => {
         zIndex: 100,
       }}
     >
+      <StatusBar />
       <View
         style={{
           width: "85%",

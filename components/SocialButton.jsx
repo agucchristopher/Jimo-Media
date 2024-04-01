@@ -1,7 +1,9 @@
 import {
   Dimensions,
+  Platform,
   StyleSheet,
   Text,
+  // ToastAndroid,
   TouchableOpacity,
   View,
 } from "react-native";
@@ -11,6 +13,11 @@ import { Svg, Path } from "react-native-svg";
 const SocialButton = ({ type }) => {
   return (
     <TouchableOpacity
+      // onPress={() =>
+      //   Platform.OS == "ios" || Platform.OS == "web"
+      //     ? alert("This feauture is currently unavailable")
+      //     : ToastAndroid.show("This feauture is currently unavailable", 2000)
+      // }
       style={{
         height: 55,
         width: Dimensions.get("screen").width * 0.9,

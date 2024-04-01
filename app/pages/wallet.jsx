@@ -52,7 +52,7 @@ const wallet = () => {
       "User-Agent": "Thunder Client (https://www.thunderclient.com)",
     };
 
-    let response = await fetch("http://127.0.0.1:8080/getUsers", {
+    let response = await fetch("http://192.168.43.144:8080/getUsers", {
       method: "POST",
       headers: headersList,
     });
@@ -73,7 +73,7 @@ const wallet = () => {
     let bodyContent =
       "email=aguchris740@gmail.com&username=aguchrist&password=123&dob=1710953960471&to=65fc8c19215a9e4c0e9d0b37&amount=500";
 
-    let response = await fetch("http://127.0.0.1:8080/users/sendMoney", {
+    let response = await fetch("http://192.168.43.144:8080/users/sendMoney", {
       method: "POST",
       body: bodyContent,
       headers: headersList,
