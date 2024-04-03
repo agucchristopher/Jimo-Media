@@ -28,11 +28,14 @@ const home = () => {
 
     let bodyContent = "email=aguchris740@gmail.com";
 
-    let response = await fetch("http://192.168.43.144:8080/post/getPosts", {
-      method: "POST",
-      body: bodyContent,
-      headers: headersList,
-    }).finally(() => setloading(false));
+    let response = await fetch(
+      "https://jimo-media-backend.vercel.app/post/getPosts",
+      {
+        method: "POST",
+        body: bodyContent,
+        headers: headersList,
+      }
+    ).finally(() => setloading(false));
 
     let data = await response.json();
     console.log("data: ", data);
@@ -52,11 +55,14 @@ const home = () => {
 
     let bodyContent = `email=${u?.email}`;
 
-    let response = await fetch("http://192.168.43.144:8080/getUser", {
-      method: "POST",
-      body: bodyContent,
-      headers: headersList,
-    }).finally(() => setloading(false));
+    let response = await fetch(
+      "https://jimo-media-backend.vercel.app/getUser",
+      {
+        method: "POST",
+        body: bodyContent,
+        headers: headersList,
+      }
+    ).finally(() => setloading(false));
 
     let data = await response.json();
     console.log("data: ", data);

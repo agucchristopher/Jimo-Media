@@ -25,7 +25,7 @@ const fp = () => {
     let bodyContent = `email=${email}`;
 
     let response = await fetch(
-      "http://192.168.43.144:8080/users/forgetPassword",
+      "https://jimo-media-backend.vercel.app/users/forgetPassword",
       {
         method: "POST",
         body: bodyContent,

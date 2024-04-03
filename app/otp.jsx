@@ -39,11 +39,14 @@ const otp = () => {
 
     let bodyContent = `email=${email}`;
 
-    let response = await fetch("http://192.168.43.144:8080/users/verifyOtp", {
-      method: "POST",
-      body: bodyContent,
-      headers: headersList,
-    })
+    let response = await fetch(
+      "https://jimo-media-backend.vercel.app/users/verifyOtp",
+      {
+        method: "POST",
+        body: bodyContent,
+        headers: headersList,
+      }
+    )
       .catch((err) => {
         setpopup(true);
         setloading(false);

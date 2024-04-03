@@ -54,11 +54,14 @@ const wallet = () => {
 
     let bodyContent = `email=${u?.email}`;
 
-    let response = await fetch("http://192.168.43.144:8080/getUser", {
-      method: "POST",
-      body: bodyContent,
-      headers: headersList,
-    }).finally(() => setloading(false));
+    let response = await fetch(
+      "https://jimo-media-backend.vercel.app/getUser",
+      {
+        method: "POST",
+        body: bodyContent,
+        headers: headersList,
+      }
+    ).finally(() => setloading(false));
 
     let data = await response.json();
     console.log("data: ", data);
@@ -80,10 +83,13 @@ const wallet = () => {
       "User-Agent": "Thunder Client (https://www.thunderclient.com)",
     };
 
-    let response = await fetch("http://192.168.43.144:8080/getUsers", {
-      method: "POST",
-      headers: headersList,
-    });
+    let response = await fetch(
+      "https://jimo-media-backend.vercel.app/getUsers",
+      {
+        method: "POST",
+        headers: headersList,
+      }
+    );
 
     let data = await response.json();
     let userz = data?.users;
@@ -104,11 +110,14 @@ const wallet = () => {
 
     let bodyContent = `email=${user?.email}&amount=${sendAmount}&to=${to}`;
 
-    let response = await fetch("http://192.168.43.144:8080/users/sendMoney", {
-      method: "POST",
-      body: bodyContent,
-      headers: headersList,
-    });
+    let response = await fetch(
+      "https://jimo-media-backend.vercel.app/users/sendMoney",
+      {
+        method: "POST",
+        body: bodyContent,
+        headers: headersList,
+      }
+    );
     // .then(async (d) => {
 
     // });
