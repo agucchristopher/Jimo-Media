@@ -8,13 +8,79 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AuthHeader from "../components/AuthHeader";
 import { Svg, Path } from "react-native-svg";
 import { Colors } from "../assets/data";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { router } from "expo-router";
 const makePost = () => {
   let [loading, setloading] = useState(false);
+  let [content, setcontent] = useState(false);
+  let [user, setuser] = useState();
+  let getUser = async () => {
+    let u = await AsyncStorage.getItem("user");
+    u = JSON.parse(u);
+    let headersList = {
+      Accept: "*/*",
+      "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+      "Content-Type": "application/x-www-form-urlencoded",
+    };
+
+    let bodyContent = `email=${u?.email}`;
+
+    let response = await fetch(
+      "https://jimo-media-backend.vercel.app/getUser",
+      {
+        method: "POST",
+        body: bodyContent,
+        headers: headersList,
+      }
+    );
+
+    let data = await response.json();
+    if (data.status) {
+      let jsonUser = JSON.stringify(data?.user);
+      await AsyncStorage.setItem("user", jsonUser);
+    }
+    u = await AsyncStorage.getItem("user");
+    setuser(JSON.parse(u));
+    console.log("Userrr:  ", u);
+  };
+  let post = async () => {
+    console.log("Posting..", user);
+
+    setloading(true);
+    let headersList = {
+      Accept: "*/*",
+      "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+      "Content-Type": "application/x-www-form-urlencoded",
+    };
+
+    let bodyContent = `email=${user?.email}&content=${content}&image=`;
+
+    let response = await fetch(
+      "https://jimo-media-backend.vercel.app/post/makePost",
+      {
+        method: "POST",
+        body: bodyContent,
+        headers: headersList,
+      }
+    );
+
+    let data = await response.json();
+    console.log(data);
+    if (data.status) {
+      setcontent("");
+      router?.push("/pages/home");
+    }
+    setloading(false);
+  };
+  useEffect(() => {
+    getUser();
+  }, []);
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
       <ScrollView style={{ flex: 1 }}>
@@ -45,6 +111,7 @@ const makePost = () => {
             style={{ width: "70%", marginTop: 10, height: 80 }}
             placeholderTextColor={"grey"}
             placeholder="Start Typing..."
+            onChangeText={(e) => setcontent(e)}
           />
         </View>
         <TouchableOpacity
@@ -60,6 +127,7 @@ const makePost = () => {
             alignContent: "center",
             justifyContent: "center",
           }}
+          onPress={() => post()}
         >
           {!loading ? (
             <>

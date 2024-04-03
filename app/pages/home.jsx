@@ -89,6 +89,7 @@ const home = () => {
             onRefresh={() => {
               setrefreshing(true);
               getPosts().finally(() => setrefreshing(false));
+              getUser().finally(() => setrefreshing(false));
             }}
             refreshing={refreshing}
           />

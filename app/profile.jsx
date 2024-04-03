@@ -105,7 +105,7 @@ const profile = ({ popup }) => {
             marginLeft: 15,
             marginTop: 10,
             alignSelf: "flex-start",
-            fontSize: 20,
+            fontSize: 18,
           }}
         >
           Sarah John
@@ -115,7 +115,7 @@ const profile = ({ popup }) => {
             fontFamily: "MMedium",
             marginLeft: 15,
             alignSelf: "flex-start",
-            fontSize: 20,
+            fontSize: 16,
           }}
         >
           Lab Scientist ❤️‍🔥❤️‍🔥
@@ -125,7 +125,7 @@ const profile = ({ popup }) => {
             style={{
               backgroundColor: "#F1F1F1",
               width: width * 0.4,
-              height: 55,
+              height: 45,
               alignItems: "center",
               justifyContent: "center",
               margin: 15,
@@ -141,7 +141,7 @@ const profile = ({ popup }) => {
             style={{
               backgroundColor: Colors.primary,
               width: width * 0.4,
-              height: 55,
+              height: 45,
               alignItems: "center",
               justifyContent: "center",
               margin: 15,
