@@ -93,9 +93,11 @@ const wallet = () => {
 
     let data = await response.json();
     let userz = data?.users;
-    let userz2 = userz?.filter((bank) =>
-      bank.username.toLocaleLowerCase().includes("")
-    );
+    let u = await AsyncStorage.getItem("user");
+    u = JSON.parse(u);
+    let myusername = u?.username;
+    console.log("my username", myusername);
+    let userz2 = userz?.filter((item) => item.username !== myusername);
     setusers(userz2);
     setmodalusers(userz2);
     console.log(data, userz2);
