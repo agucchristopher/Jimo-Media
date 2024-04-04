@@ -1,12 +1,4 @@
-import {
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  TouchableOpacityBase,
-  View,
-} from "react-native";
+import { ScrollView, Text } from "react-native";
 import React, { useState } from "react";
 import AuthHeader from "../components/AuthHeader";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -19,7 +11,6 @@ import { router } from "expo-router";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 const signup = () => {
-  // console.log("Exiting Expo");
   const [selectedDate, setSelectedDate] = useState(null);
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
@@ -41,7 +32,7 @@ const signup = () => {
     const formattedDate = `${date.getDate()}/${
       date.getMonth() + 1
     }/${date.getFullYear()}`;
-    // setdob(fi)
+    setdob(formattedDate);
     return formattedDate;
   };
   let [username, setusername] = useState("");
@@ -52,7 +43,6 @@ const signup = () => {
   let [popup, setpopup] = useState(false);
   let [status, setstatus] = useState(false);
   let [message, setmessage] = useState("");
-  // let []
   let register = async () => {
     console.log("..");
     setloading(true);
@@ -62,7 +52,7 @@ const signup = () => {
       "Content-Type": "application/x-www-form-urlencoded",
     };
 
-    let bodyContent = `email=${email}&username=${username}&password=${password}&dob=1710953960471`;
+    let bodyContent = `email=${email}&username=${username}&password=${password}&dob=${dob}`;
 
     let response = await fetch(
       "https://jimo-media-backend.vercel.app/users/signup",
@@ -75,14 +65,12 @@ const signup = () => {
       .catch((err) => {
         setpopup(true);
         setloading(false);
-        console.log(err);
         setstatus(false);
         setmessage(err.message);
       })
       .finally(() => setloading(false));
 
     let data = await response.json();
-    console.log(data);
     if (data) {
       setpopup(true);
       setstatus(data.status);
@@ -98,9 +86,7 @@ const signup = () => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
       <ScrollView style={{ flex: 1, backgroundColor: "white" }}>
-        {/* <View style={{ backgroundColor: "white" }}> */}
         {popup ? <Toast status={status} mesage={message} /> : null}
-        {/* </View> */}
         <AuthHeader popup={false} title={"Register"} />
         <InputText
           placeholder={"Username"}
@@ -133,10 +119,6 @@ const signup = () => {
           }
           onPress={showDatePicker}
         />
-        {/* <InputText
-          placeholder={"Date Of Birth"}
-          inputPlaceholder={"DD/MM/YYYY"}
-        /> */}
         <Button
           bg={Colors.primary}
           onPress={() => register()}
@@ -154,17 +136,9 @@ const signup = () => {
           }}
         >
           Already have an account?{" "}
-          {/* <TouchableOpacity
-            style={{
-              alignContent: "center",
-              justifyContent: "center",
-              //   backgroundColor: "pink",
-            }}
-          > */}
           <Text
             onPress={() => router.push("/signin")}
             style={{
-              //   textAlign: "center",
               fontSize: 16,
               fontFamily: "MMedium",
               marginTop: 0,
@@ -177,7 +151,6 @@ const signup = () => {
           >
             Sign In
           </Text>
-          {/* </TouchableOpacity> */}
         </Text>
       </ScrollView>
     </SafeAreaView>
@@ -185,5 +158,3 @@ const signup = () => {
 };
 
 export default signup;
-
-const styles = StyleSheet.create({});

@@ -2,7 +2,6 @@ import {
   Dimensions,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
@@ -32,11 +31,8 @@ const Dropdown = ({
       <TouchableOpacity
         onPress={() => {
           onPress ? onPress() : null;
-          // seteye(!eye);
         }}
         style={{
-          // marginLeft: 25,
-          // marginRight: 25,
           marginTop: 5,
           height: 55,
           flexDirection: "row",
@@ -75,7 +71,6 @@ const Dropdown = ({
         >
           {inputPlaceholder}
         </Text>
-        {/* {type == "password" && ( */}
         <TouchableOpacity>
           <Svg
             viewBox="0 0 24 24"
@@ -93,7 +88,6 @@ const Dropdown = ({
             />
           </Svg>
         </TouchableOpacity>
-        {/* )} */}
       </TouchableOpacity>
     </View>
   );

@@ -1,13 +1,10 @@
 import {
   ActivityIndicator,
   Dimensions,
-  StyleSheet,
   Text,
   TouchableOpacity,
-  View,
 } from "react-native";
 import React from "react";
-import { Colors } from "../assets/data";
 
 const Button = ({ title, onPress, bg, loading }) => {
   return (
@@ -42,5 +39,3 @@ const Button = ({ title, onPress, bg, loading }) => {
 };
 
 export default Button;
-
-const styles = StyleSheet.create({});

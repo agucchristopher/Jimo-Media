@@ -15,7 +15,6 @@ const InputText = ({
   keyboardType,
   onChangeText,
   userStyles,
-  value,
 }) => {
   let [eye, seteye] = React.useState(false);
   return (

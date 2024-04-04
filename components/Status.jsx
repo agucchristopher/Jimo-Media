@@ -25,10 +25,8 @@ const Status = () => {
       <TouchableOpacity
         style={{
           height: 200,
-          //   backgroundColor: "red",
           width: 130,
           borderRadius: 15,
-          // borderWidth: 1,
           alignItems: "center",
           justifyContent: "center",
           marginRight: 10,
@@ -76,10 +74,8 @@ const Status = () => {
             <TouchableOpacity
               style={{
                 height: 200,
-                //   backgroundColor: "red",
                 width: 130,
                 borderRadius: 15,
-                // borderWidth: 1,
                 alignItems: "center",
                 justifyContent: "center",
                 marginRight: 10,
@@ -101,7 +97,6 @@ const Status = () => {
                   color: "black",
                   fontFamily: "MMedium",
                   backgroundColor: "white",
-                  //   borderRadius: 5,
                 }}
                 numberOfLines={1}
               >
