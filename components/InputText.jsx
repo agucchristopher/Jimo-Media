@@ -15,6 +15,7 @@ const InputText = ({
   keyboardType,
   onChangeText,
   userStyles,
+  value,
 }) => {
   let [eye, seteye] = React.useState(false);
   return (
@@ -33,8 +34,6 @@ const InputText = ({
       </Text>
       <View
         style={{
-          // marginLeft: 25,
-          // marginRight: 25,
           marginTop: 5,
           height: 55,
           flexDirection: "row",

@@ -72,11 +72,6 @@ const wallet = () => {
     u = await AsyncStorage.getItem("user");
     setuser(JSON.parse(u));
   };
-  // let getUser = async () => {
-  //   let u = await AsyncStorage.getItem("user");
-  //   setuser(JSON.parse(u));
-  //   console.log("U: ", JSON.parse(u));
-  // };
   let getUsers = async () => {
     let headersList = {
       Accept: "*/*",
@@ -96,11 +91,9 @@ const wallet = () => {
     let u = await AsyncStorage.getItem("user");
     u = JSON.parse(u);
     let myusername = u?.username;
-    console.log("my username", myusername);
     let userz2 = userz?.filter((item) => item.username !== myusername);
     setusers(userz2);
     setmodalusers(userz2);
-    console.log(data, userz2);
   };
   let sendMoney = async () => {
     setloading(true);
@@ -120,27 +113,29 @@ const wallet = () => {
         headers: headersList,
       }
     );
-    // .then(async (d) => {
-
-    // });
 
     let data = await response?.json();
     console.log(data);
     if (data.status) {
       let jsonUser = JSON.stringify(data?.user);
-      console.log(jsonUser);
-      // await AsyncStorage.clear();
       await AsyncStorage.setItem("user", jsonUser).then(() => getUser());
       setSendResponse(data?.message);
       setmodal(true);
     }
+  };
+  let addCommas = (number) => {
+    // console.log(number);
+    if (number)
+      return number
+        .toString()
+        .trim()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
   useEffect(() => {
     setloading(false);
     getUser().then(() => getUsers());
   }, []);
 
-  console.log("Users: ", " ", users);
   return (
     <SafeAreaView style={{ flex: 1, padding: 0, backgroundColor: "white" }}>
       <ScrollView style={{ flex: 1, backgroundColor: "white", padding: 15 }}>
@@ -233,7 +228,11 @@ const wallet = () => {
               placeholder={"Amount"}
               keyboardType={"numeric"}
               inputPlaceholder={"00.00"}
-              onChangeText={(e) => setsendamount(e)}
+              onChangeText={(e) => {
+                setsendamount(e);
+                console.log(e);
+              }}
+              value={addCommas(sendAmount)}
             />
             <InputText
               placeholder={"For?"}
@@ -444,21 +443,9 @@ const wallet = () => {
                           onPress={() => {
                             setusername(item.username);
                             setto(item?._id);
-                            // setbid(item.code);
                             setusernameModal(false);
-                            // setmodalBanks(banks);
                           }}
                         >
-                          {/* <Image
-                            source={{ uri: item.logo }}
-                            style={{
-                              alignSelf: "center",
-                              height: 40,
-                              width: 40,
-                              // borderRadius: 1000,
-                              resizeMode: "cover",
-                            }}
-                          /> */}
                           <Text
                             style={{
                               alignSelf: "center",
@@ -795,16 +782,6 @@ const wallet = () => {
                             setmodalBanks(banks);
                           }}
                         >
-                          {/* <Image
-                            source={{ uri: item.logo }}
-                            style={{
-                              alignSelf: "center",
-                              height: 40,
-                              width: 40,
-                              // borderRadius: 1000,
-                              resizeMode: "cover",
-                            }}
-                          /> */}
                           <Text
                             style={{
                               alignSelf: "center",
