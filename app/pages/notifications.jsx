@@ -13,7 +13,7 @@ import AuthHeader from "../../components/AuthHeader";
 import { Svg, Path } from "react-native-svg";
 import { router } from "expo-router";
 const notifications = ({ popup }) => {
-  let title = "Notifications";
+  let title = "";
   return (
     <SafeAreaView style={{ flex: 1, padding: 0, backgroundColor: "white" }}>
       <View
@@ -59,36 +59,13 @@ const notifications = ({ popup }) => {
         <View style={{ width: "20%" }}></View>
       </View>
       <ScrollView style={{ flex: 1, backgroundColor: "white", padding: 10 }}>
-        {/* <AuthHeader title={""} /> */}
-        <FlatList
-          data={[
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-          ]}
+        {/* <FlatList
+          data={[""]}
           renderItem={() => {
             return (
               <TouchableOpacity
                 style={{
                   width: "99%",
-                  // backgroundColor: "red",
                   height: 80,
                   margin: 5,
                   flexDirection: "row",
@@ -119,7 +96,10 @@ const notifications = ({ popup }) => {
               </TouchableOpacity>
             );
           }}
-        />
+        /> */}
+        <Text style={{ alignSelf: "center", color: "grey", fontSize: 18 }}>
+          This feature is coming soon!
+        </Text>
       </ScrollView>
     </SafeAreaView>
   );

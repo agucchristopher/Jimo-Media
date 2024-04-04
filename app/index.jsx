@@ -1,9 +1,7 @@
 import {
   Dimensions,
   ImageBackground,
-  ScrollView,
   StatusBar,
-  StyleSheet,
   Text,
   TouchableOpacity,
   View,
@@ -12,19 +10,11 @@ import React, { useEffect } from "react";
 import { Colors } from "../assets/data";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
-import SplashScreen from "expo-app-loading";
-import Animated, {
-  BounceIn,
-  FadeIn,
-  FadeInDown,
-  FadeInUp,
-} from "react-native-reanimated";
+import Animated, { FadeInDown, FadeInUp } from "react-native-reanimated";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 const index = () => {
   let AnimatedOpacity = Animated.createAnimatedComponent(TouchableOpacity);
   let AnimatedText = Animated.createAnimatedComponent(Text);
-  // useEffect(async () => {
-  // await SplashScreen.preventAutoHideAsync();
   useEffect(() => {
     let checkUser = async () => {
       let user = await AsyncStorage.getItem("user");
@@ -35,7 +25,6 @@ const index = () => {
     };
     checkUser();
   }, []);
-  // }, []);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -131,5 +120,3 @@ const index = () => {
 };
 
 export default index;
-
-const styles = StyleSheet.create({});

@@ -1,9 +1,7 @@
 import {
-  FlatList,
   Image,
   ImageBackground,
   ScrollView,
-  StyleSheet,
   Text,
   TouchableOpacity,
   useWindowDimensions,
@@ -253,5 +251,3 @@ const profile = ({ popup }) => {
 };
 
 export default profile;
-
-const styles = StyleSheet.create({});

@@ -1,21 +1,11 @@
-import {
-  Dimensions,
-  FlatList,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
+import { FlatList, ScrollView, Text, TextInput, View } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AuthHeader from "../components/AuthHeader";
-import InputText from "../components/InputText";
 import Button from "../components/Button";
 import { Colors } from "../assets/data";
 import { router } from "expo-router";
 const otp = () => {
-  let { width, height } = Dimensions.get("screen");
   const [SelectedItem, setSelectedItem] = React.useState(0);
   let [otp, setOtp] = React.useState([{}, {}, {}, {}, {}]);
   let inputRef = React.useRef();
@@ -29,7 +19,6 @@ const otp = () => {
   const [message, setmessage] = useState("");
   const [status, setstatus] = useState(false);
   let verifyOtp = async () => {
-    console.log("..");
     setloading(true);
     let headersList = {
       Accept: "*/*",
@@ -50,7 +39,6 @@ const otp = () => {
       .catch((err) => {
         setpopup(true);
         setloading(false);
-        console.log(err);
         setstatus(false);
         setmessage(err.message);
         setTimeout(() => {
@@ -84,7 +72,6 @@ const otp = () => {
             color: "black",
             fontFamily: "PBold",
             textAlign: "center",
-            // fontWeight: "bold",
           }}
         >
           OTP Verification
@@ -98,7 +85,6 @@ const otp = () => {
             margin: 15,
             marginTop: 0,
             marginBottom: 35,
-            // fontWeight: "bold",
           }}
         >
           Enter the 5 digit verification that has been sent to your email
@@ -115,7 +101,6 @@ const otp = () => {
             return (
               <View
                 style={{
-                  //   paddingLeft: 20,
                   backgroundColor: "#F7F8F9",
                   height: 55,
                   borderRadius: 15,
@@ -130,7 +115,6 @@ const otp = () => {
                   ref={SelectedItem == index ? inputRef : null}
                   keyboardType="numeric"
                   onFocus={() => {
-                    // console.log(inputRef);
                     setSelectedItem(index);
                   }}
                   onTextInput={() => {
@@ -157,7 +141,6 @@ const otp = () => {
             textAlign: "center",
             marginTop: 15,
             marginBottom: 35,
-            // fontWeight: "bold",
           }}
         >
           Didn t receive the OTP?{" "}
@@ -167,7 +150,6 @@ const otp = () => {
               color: Colors.primary,
               fontFamily: "MMedium",
               textAlign: "center",
-              // fontWeight: "bold",
             }}
           >
             Resend
@@ -185,5 +167,3 @@ const otp = () => {
 };
 
 export default otp;
-
-const styles = StyleSheet.create({});
