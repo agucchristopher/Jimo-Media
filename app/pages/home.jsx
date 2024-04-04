@@ -3,7 +3,6 @@ import {
   FlatList,
   RefreshControl,
   ScrollView,
-  StyleSheet,
   Text,
   View,
 } from "react-native";
@@ -74,12 +73,8 @@ const home = () => {
   useEffect(() => {
     getPosts();
     getUser();
-    setTimeout(() => {}, 3000);
   }, []);
-  useEffect(async () => {
-    let user = await AsyncStorage.getItem("user");
-    console.log(user);
-  }, []);
+
   return (
     <SafeAreaView style={{ flex: 1, padding: 0, backgroundColor: "white" }}>
       <ScrollView
@@ -96,8 +91,7 @@ const home = () => {
         }
       >
         <Post />
-        {/* <Status /> */}
-        <View style={{ width: "100%", borderWidth: 0.75, marginTop: 25 }} />
+        <View style={{ width: "100%", borderWidth: 0.4, marginTop: 25 }} />
         <FlatList
           data={posts}
           renderItem={({ index, item }) => {
@@ -133,5 +127,3 @@ const home = () => {
 };
 
 export default home;
-
-const styles = StyleSheet.create({});

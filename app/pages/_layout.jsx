@@ -1,8 +1,15 @@
 import { Tabs } from "expo-router";
 import { Path, Svg } from "react-native-svg";
 import { Colors } from "../../assets/data";
-import { Dimensions, Platform, StatusBar, Text } from "react-native";
+import { Dimensions, LogBox, Platform, StatusBar, Text } from "react-native";
+import { useEffect } from "react";
 export default () => {
+  useEffect(() => {
+    LogBox.ignoreLogs([
+      "VirtualizedLists should never be nested inside plain ScrollViews with the same orientation because it can break windowing and other functionality - use another VirtualizedList-backed container instead.",
+      `Layout children must be of type Screen, all other children are ignored. To use custom children, create a custom <Layout />. Update Layout Route at: "app/_layout"`,
+    ]);
+  }, []);
   return (
     <Tabs
       screenOptions={{
