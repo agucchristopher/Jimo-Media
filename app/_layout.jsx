@@ -3,6 +3,7 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Colors } from "../assets/data";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -36,11 +37,20 @@ export default function RootLayout() {
       initialRouteName={user == null || undefined ? "index" : "pages"}
       screenOptions={{
         headerShown: false,
+        statusBarColor: "#fff",
+        statusBarStyle: "dark",
       }}
     >
       {user == null || undefined ? (
         <>
-          <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="index"
+            options={{
+              headerShown: false,
+              statusBarColor: Colors.primary,
+              statusBarStyle: "light",
+            }}
+          />
           <Stack.Screen name="signin" options={{ headerShown: false }} />
           <Stack.Screen name="signup" options={{ headerShown: false }} />
           <Stack.Screen name="fp" options={{ headerShown: false }} />
