@@ -9,7 +9,6 @@ SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
   let [user, setuser] = useState();
   const [loaded, error] = useFonts({
-    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
     MBold: require("../assets/fonts/Montserrat-SemiBold.ttf"),
     MMedium: require("../assets/fonts/Montserrat-Medium.ttf"),
     PBold: require("../assets/fonts/Poppins-SemiBold.ttf"),
