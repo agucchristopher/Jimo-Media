@@ -7,14 +7,21 @@ import {
   useWindowDimensions,
   View,
 } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Svg, Path } from "react-native-svg";
 import { router } from "expo-router";
 import { Colors } from "../assets/data";
+import { useLocalSearchParams } from "expo-router";
 const profile = ({ popup }) => {
+  let params = useLocalSearchParams();
+  console.log("Params: ", params);
+  let [user, setuser] = useState(params?.owner);
   let title = "";
   let { width, height } = useWindowDimensions();
+  useEffect(() => {
+    console.log(JSON.parse(user));
+  }, []);
   return (
     <SafeAreaView style={{ flex: 1, padding: 0, backgroundColor: "white" }}>
       <View
@@ -106,7 +113,7 @@ const profile = ({ popup }) => {
             fontSize: 18,
           }}
         >
-          Sarah John
+          @{JSON.parse(user)?.username}
         </Text>
         <Text
           style={{
@@ -136,6 +143,7 @@ const profile = ({ popup }) => {
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
+            onPress={() => router.push("/makePost")}
             style={{
               backgroundColor: Colors.primary,
               width: width * 0.4,
