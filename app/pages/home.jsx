@@ -46,13 +46,17 @@ const home = () => {
   let getUser = async () => {
     let u = await AsyncStorage.getItem("user");
     u = JSON.parse(u);
+    console.log("U: ", u);
     let headersList = {
       Accept: "*/*",
       "User-Agent": "Thunder Client (https://www.thunderclient.com)",
       "Content-Type": "application/x-www-form-urlencoded",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST,PATCH,OPTIONS",
+      "Access-Control-Allow-Headers": "application/x-www-form-urlencoded",
     };
 
-    let bodyContent = `email=${u?.email}`;
+    let bodyContent = `id=${u?._id}`;
 
     let response = await fetch(
       "https://jimo-media-backend.vercel.app/getUser",

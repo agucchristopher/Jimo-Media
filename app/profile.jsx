@@ -13,14 +13,54 @@ import { Svg, Path } from "react-native-svg";
 import { router } from "expo-router";
 import { Colors } from "../assets/data";
 import { useLocalSearchParams } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 const profile = ({ popup }) => {
   let params = useLocalSearchParams();
   console.log("Params: ", params);
   let [user, setuser] = useState(params?.owner);
+  let [loading, setloading] = useState(false);
+  let [You, setYou] = useState(false);
   let title = "";
   let { width, height } = useWindowDimensions();
+
+  let you = async () => {
+    console.log("********************************");
+    let u = await AsyncStorage.getItem("user");
+    u = JSON.parse(u);
+    let owner = JSON.parse(params?.owner);
+    if (owner.id === u?._id) {
+      console.log("your profile", u, params?.owner);
+      setYou(true);
+    }
+  };
+  let getUser = async () => {
+    let headersList = {
+      Accept: "*/*",
+      "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+      "Content-Type": "application/x-www-form-urlencoded",
+    };
+    let id = JSON.parse(user)?.id;
+    console.log("Id: " + id);
+    let bodyContent = `id=${id}`;
+
+    let response = await fetch(
+      "https://jimo-media-backend.vercel.app/getUser",
+      {
+        method: "POST",
+        body: bodyContent,
+        headers: headersList,
+      }
+    ).finally(() => setloading(false));
+
+    let data = await response.json();
+    console.log("data: ", data);
+    if (data.status) {
+      setuser(data?.user);
+    }
+  };
   useEffect(() => {
-    console.log(JSON.parse(user));
+    getUser();
+    you();
   }, []);
   return (
     <SafeAreaView style={{ flex: 1, padding: 0, backgroundColor: "white" }}>
@@ -113,7 +153,7 @@ const profile = ({ popup }) => {
             fontSize: 18,
           }}
         >
-          @{JSON.parse(user)?.username}
+          @{user?.username}
         </Text>
         <Text
           style={{
@@ -125,41 +165,47 @@ const profile = ({ popup }) => {
         >
           Lab Scientist ❤️‍🔥❤️‍🔥
         </Text>
-        <View style={{ flexDirection: "row", gap: 1, alignSelf: "center" }}>
-          <TouchableOpacity
-            style={{
-              backgroundColor: "#F1F1F1",
-              width: width * 0.4,
-              height: 45,
-              alignItems: "center",
-              justifyContent: "center",
-              margin: 15,
-              borderRadius: 5,
-              marginLeft: 5,
-            }}
-          >
-            <Text style={{ color: "grey", fontSize: 18, fontFamily: "PBold" }}>
-              Edit Profile
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => router.push("/makePost")}
-            style={{
-              backgroundColor: Colors.primary,
-              width: width * 0.4,
-              height: 45,
-              alignItems: "center",
-              justifyContent: "center",
-              margin: 15,
-              borderRadius: 5,
-              marginLeft: 5,
-            }}
-          >
-            <Text style={{ color: "white", fontSize: 18, fontFamily: "PBold" }}>
-              Make Post
-            </Text>
-          </TouchableOpacity>
-        </View>
+        {You ? (
+          <View style={{ flexDirection: "row", gap: 1, alignSelf: "center" }}>
+            <TouchableOpacity
+              style={{
+                backgroundColor: "#F1F1F1",
+                width: width * 0.4,
+                height: 45,
+                alignItems: "center",
+                justifyContent: "center",
+                margin: 15,
+                borderRadius: 5,
+                marginLeft: 5,
+              }}
+            >
+              <Text
+                style={{ color: "grey", fontSize: 18, fontFamily: "PBold" }}
+              >
+                Edit Profile
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => router.push("/makePost")}
+              style={{
+                backgroundColor: Colors.primary,
+                width: width * 0.4,
+                height: 45,
+                alignItems: "center",
+                justifyContent: "center",
+                margin: 15,
+                borderRadius: 5,
+                marginLeft: 5,
+              }}
+            >
+              <Text
+                style={{ color: "white", fontSize: 18, fontFamily: "PBold" }}
+              >
+                Make Post
+              </Text>
+            </TouchableOpacity>
+          </View>
+        ) : null}
         <View
           style={{
             marginLeft: 15,
@@ -167,6 +213,7 @@ const profile = ({ popup }) => {
             alignContent: "center",
             gap: 15,
             margin: 5,
+            marginTop: !You ? 15 : 5,
           }}
         >
           <Svg
