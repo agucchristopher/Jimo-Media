@@ -20,6 +20,8 @@ import { Svg, Path } from "react-native-svg";
 import Dropdown from "../../components/Dropdown";
 import banks from "../../assets/banks.json";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+// import https from "https";
+import * as WebBrowser from "expo-web-browser";
 const wallet = () => {
   let [activeTab, setActiveTab] = useState("Send Money");
   const [modal, setmodal] = useState(false);
@@ -122,15 +124,20 @@ const wallet = () => {
       setSendResponse(data?.message);
       setmodal(true);
     }
+    if (!data.status) {
+      seterror(true);
+      setSendResponse(data?.message);
+      setmodal(true);
+    }
   };
   let addCommas = (number) => {
-    // console.log(number);
     if (number)
       return number
         .toString()
         .trim()
         .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
+  let chargeUser = async () => {};
   useEffect(() => {
     setloading(false);
     getUser().then(() => getUsers());
@@ -162,7 +169,10 @@ const wallet = () => {
           }}
         >
           Balance:
-          <Text style={{ fontFamily: "PBold" }}> ₦{user?.balance} </Text>
+          <Text style={{ fontFamily: "PBold" }}>
+            {" "}
+            ₦{addCommas(user?.balance)}{" "}
+          </Text>
         </Text>
         <View
           style={{
@@ -249,6 +259,31 @@ const wallet = () => {
               loading={loading}
               title={"Send Money"}
             />
+            <TouchableOpacity
+              // onPress={() => router.push("/signin")}
+              style={{
+                height: 55,
+                width: Dimensions.get("screen").width * 0.92,
+                borderColor: Colors.primary,
+                alignSelf: "center",
+                borderRadius: 10,
+                justifyContent: "center",
+                borderWidth: 0.85,
+                marginTop: 5,
+                marginBottom: 10,
+              }}
+            >
+              <Text
+                style={{
+                  color: Colors.primary,
+                  fontSize: 16,
+                  textAlign: "center",
+                  fontFamily: "MBold",
+                }}
+              >
+                Add Money
+              </Text>
+            </TouchableOpacity>
             <Modal
               visible={modal}
               style={{
@@ -318,8 +353,18 @@ const wallet = () => {
                     </Svg>
                   </TouchableOpacity>
                   <Image
-                    source={require("../../assets/Successmark.png")}
-                    style={{ alignSelf: "center" }}
+                    source={
+                      error
+                        ? require("../../assets/cross.png")
+                        : require("../../assets/Successmark.png")
+                    }
+                    style={{
+                      alignSelf: "center",
+                      width: "45%",
+                      aspectRatio: 1 / 2,
+                      height: 120,
+                      resizeMode: "contain",
+                    }}
                   />
                   <Text
                     style={{
