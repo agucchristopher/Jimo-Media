@@ -13,11 +13,14 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import AuthHeader from "../components/AuthHeader";
 import { Svg, Path } from "react-native-svg";
 import { Colors } from "../assets/data";
+import { Fontisto, MaterialIcons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
+import * as ImagePicker from "expo-image-picker";
 const makePost = () => {
   let [loading, setloading] = useState(false);
   let [content, setcontent] = useState(false);
+  let [imageUri, setimageUri] = useState();
   let [user, setuser] = useState();
   let getUser = async () => {
     let u = await AsyncStorage.getItem("user");
@@ -77,6 +80,32 @@ const makePost = () => {
     }
     setloading(false);
   };
+  const pickImageAsync = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      // allowsEditing: true,
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      console.log(result);
+      setimageUri(result?.assets[0].uri);
+    } else {
+      alert("You did not select any image.");
+    }
+  };
+  const openCameraAsync = async () => {
+    let result = await ImagePicker.launchCameraAsync({
+      // allowsEditing: true,
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      console.log(result);
+      setimageUri(result?.assets[0].uri);
+    } else {
+      alert("You did not select any image.");
+    }
+  };
   useEffect(() => {
     getUser();
   }, []);
@@ -94,25 +123,48 @@ const makePost = () => {
             alignSelf: "center",
             borderRadius: 15,
             padding: 10,
-            flexDirection: "row",
+            flexDirection: "column",
             gap: 5,
           }}
         >
-          <Image
-            source={require("../assets/post.jpg")}
+          <View style={{ flexDirection: "row", gap: 5, height: "80%" }}>
+            <Image
+              source={require("../assets/post.jpg")}
+              style={{
+                height: 60,
+                width: 60,
+                resizeMode: "cover",
+                borderRadius: 1000,
+              }}
+            />
+            <TextInput
+              style={{ width: "70%", marginTop: 10, height: 80 }}
+              placeholderTextColor={"grey"}
+              placeholder="Start Typing..."
+              onChangeText={(e) => setcontent(e)}
+            />
+          </View>
+
+          <View
             style={{
-              height: 60,
-              width: 60,
-              resizeMode: "cover",
-              borderRadius: 1000,
+              // backgroundColor: "red",
+              height: 50,
+              width: "100%",
+              alignSelf: "flex-end",
+              // justifyContent: "center",
+              alignItems: "center",
+              padding: 5,
+              flexDirection: "row",
+              gap: 5,
             }}
-          />
-          <TextInput
-            style={{ width: "70%", marginTop: 10, height: 80 }}
-            placeholderTextColor={"grey"}
-            placeholder="Start Typing..."
-            onChangeText={(e) => setcontent(e)}
-          />
+          >
+            <TouchableOpacity onPress={pickImageAsync}>
+              <Fontisto name="camera" size={24} color="grey" />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={openCameraAsync}>
+              <MaterialIcons name="image" size={28} color="grey" />
+            </TouchableOpacity>
+          </View>
         </View>
         <TouchableOpacity
           style={{
@@ -154,6 +206,18 @@ const makePost = () => {
             <ActivityIndicator color={"white"} />
           )}
         </TouchableOpacity>
+        {imageUri ? (
+          <Image
+            source={{ uri: imageUri }}
+            style={{
+              width: "70%",
+              aspectRatio: 1,
+              alignSelf: "center",
+              margin: 10,
+              borderRadius: 15,
+            }}
+          />
+        ) : null}
       </ScrollView>
     </SafeAreaView>
   );

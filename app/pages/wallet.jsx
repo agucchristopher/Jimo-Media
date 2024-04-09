@@ -161,7 +161,8 @@ const wallet = () => {
             marginBottom: 35,
           }}
         >
-          Balance: ₦{user?.balance}
+          Balance:
+          <Text style={{ fontFamily: "PBold" }}> ₦{user?.balance} </Text>
         </Text>
         <View
           style={{

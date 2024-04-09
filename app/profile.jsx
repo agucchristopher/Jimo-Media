@@ -163,7 +163,7 @@ const profile = ({ popup }) => {
             fontSize: 16,
           }}
         >
-          Lab Scientist ❤️‍🔥❤️‍🔥
+          {user?.bio}
         </Text>
         {You ? (
           <View style={{ flexDirection: "row", gap: 1, alignSelf: "center" }}>
