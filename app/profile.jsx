@@ -133,7 +133,9 @@ const profile = ({ popup }) => {
             }}
           >
             <Image
-              source={require("../assets/pfp.jpg")}
+              source={{
+                uri: `https://avatar.oxro.io/avatar.svg?name=${user?.username}&background=&length=1`,
+              }}
               style={{
                 height: 150,
                 width: 150,

@@ -114,7 +114,12 @@ const wallet = () => {
         body: bodyContent,
         headers: headersList,
       }
-    );
+    ).catch((e) => {
+      setloading(false);
+      seterror(true);
+      setSendResponse(e?.message);
+      setmodal(true);
+    });
 
     let data = await response?.json();
     console.log(data);
@@ -302,7 +307,7 @@ const wallet = () => {
                   height: "100%",
                   backgroundColor: "#000",
                   // flex: 1,
-                  opacity: 0.7,
+                  opacity: 0.8,
                   alignSelf: "center",
                   justifyContent: "center",
                   width: "100%",

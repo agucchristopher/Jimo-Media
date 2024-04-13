@@ -5,10 +5,19 @@ import { Svg, Path } from "react-native-svg";
 import { router } from "expo-router";
 const PostContent = ({ i, liked, data }) => {
   let [likedContent, setlikedContent] = useState(liked);
+  let randomColors = () => {
+    let hash = Math.round(Math.random() * 10);
+    let colors = ["000039", "ffa500", "00ff00", "ff0000"];
+    if (hash > 3) {
+      return colors[2];
+    } else {
+      return colors[hash];
+    }
+  };
   return (
     <View
       style={{
-        height: 380,
+        height: data.image !== "" ? 380 : 200,
         alignSelf: "center",
         width: Dimensions.get("window").width * 0.99,
         margin: 3,
@@ -27,9 +36,20 @@ const PostContent = ({ i, liked, data }) => {
           marginBottom: 10,
         }}
       >
-        <TouchableOpacity onPress={() => router.push("/profile")}>
+        <TouchableOpacity
+          onPress={() =>
+            router.push({
+              pathname: "/profile",
+              params: { owner: JSON.stringify(data.owner) },
+            })
+          }
+        >
           <Image
-            source={require("./../assets/pfp.jpg")}
+            source={{
+              uri: `https://avatar.oxro.io/avatar.svg?name=${
+                data?.owner?.username
+              }&background=${randomColors()}&length=1`,
+            }}
             style={{
               height: 55,
               width: 55,
@@ -102,18 +122,20 @@ const PostContent = ({ i, liked, data }) => {
           </Text>
         </View>
       </View>
-      <TouchableOpacity>
-        <Image
-          source={require("../assets/post.jpg")}
-          style={{
-            height: 200,
-            width: "100%",
-            resizeMode: "cover",
-            marginTop: 10,
-            borderRadius: 5,
-          }}
-        />
-      </TouchableOpacity>
+      {data.image !== "" ? (
+        <TouchableOpacity>
+          <Image
+            source={{ uri: data.image }}
+            style={{
+              height: 200,
+              width: "100%",
+              resizeMode: "cover",
+              marginTop: 10,
+              borderRadius: 5,
+            }}
+          />
+        </TouchableOpacity>
+      ) : null}
       <View
         style={{
           flexDirection: "row",

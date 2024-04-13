@@ -85,7 +85,9 @@ const profile = () => {
           }}
         >
           <Image
-            source={require("../../assets/pfp.jpg")}
+            source={{
+              uri: `https://avatar.oxro.io/avatar.svg?name=${user?.username}&background=Ff0000&length=1`,
+            }}
             style={{
               height: 30,
               width: 30,

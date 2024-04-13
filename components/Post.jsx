@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import React from "react";
 import { router } from "expo-router";
-const Post = () => {
+const Post = ({ user }) => {
   return (
     <View
       style={{
@@ -22,9 +22,18 @@ const Post = () => {
         width: Dimensions.get("screen").width * 0.9,
       }}
     >
-      <TouchableOpacity onPress={() => router.push("/profile")}>
+      <TouchableOpacity
+        onPress={() =>
+          router.push({
+            pathname: "/profile",
+            params: { owner: JSON.stringify(user) },
+          })
+        }
+      >
         <Image
-          source={require("./../assets/pfp.jpg")}
+          source={{
+            uri: `https://avatar.oxro.io/avatar.svg?name=${user?.username}username}&background=Ff0000&length=1`,
+          }}
           style={{
             height: 50,
             width: 50,

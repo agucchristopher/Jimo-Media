@@ -16,6 +16,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const home = () => {
   let [posts, setposts] = useState([]);
   let [loading, setloading] = useState(false);
+  let [user, setuser] = useState();
   let [refreshing, setrefreshing] = useState(false);
   let getPosts = async () => {
     setloading(true);
@@ -94,7 +95,7 @@ const home = () => {
           />
         }
       >
-        <Post />
+        <Post user={user} />
         <View style={{ width: "100%", borderWidth: 0.4, marginTop: 25 }} />
         <FlatList
           data={posts}
