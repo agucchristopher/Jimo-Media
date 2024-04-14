@@ -14,14 +14,21 @@ import AuthHeader from "../components/AuthHeader";
 import { Svg, Path } from "react-native-svg";
 import { Colors } from "../assets/data";
 import { Fontisto, MaterialIcons } from "@expo/vector-icons";
+// import fs from "fs";
+// import FormData from "form-data";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
 import * as ImagePicker from "expo-image-picker";
+import axios from "axios";
 const makePost = () => {
   let [loading, setloading] = useState(false);
   let [content, setcontent] = useState(false);
   let [imageUri, setimageUri] = useState();
+  let [imageName, setimageName] = useState();
+  let [imageType, setimageType] = useState();
   let [user, setuser] = useState();
+  let [fileItem, setfileItem] = useState();
+
   let getUser = async () => {
     let u = await AsyncStorage.getItem("user");
     u = JSON.parse(u);
@@ -53,28 +60,35 @@ const makePost = () => {
   };
   let post = async () => {
     console.log("Posting..", user);
-
+    let userID = user?.email;
+    console.log("Parsed ID: ", userID);
     setloading(true);
+    let bodyContent = new FormData();
     let headersList = {
       Accept: "*/*",
       "User-Agent": "Thunder Client (https://www.thunderclient.com)",
-      "Content-Type": "application/x-www-form-urlencoded",
+      "Content-Type": `multipart/form-data`,
     };
+    console.log(fileItem);
+    try {
+      const formData = new FormData();
+      formData.append("image", {
+        uri: imageUri,
+        name: imageName, // You can change the filename if needed
+        type: imageType, // Change the type accordingly
+      });
+      const response = await axios.post(
+        "http://10.184.182.9:8080/post/makePost",
+        formData
+      );
+    } catch (error) {
+      setloading(false);
+      console.log(error);
+    }
 
-    let bodyContent = `email=${user?.email}&content=${content}&image=`;
-
-    let response = await fetch(
-      "https://jimo-media-backend.vercel.app/post/makePost",
-      {
-        method: "POST",
-        body: bodyContent,
-        headers: headersList,
-      }
-    );
-
-    let data = await response.json();
+    let data = await response?.json();
     console.log(data);
-    if (data.status) {
+    if (data?.status) {
       setcontent("");
       router?.push("/pages/home");
     }
@@ -89,6 +103,9 @@ const makePost = () => {
     if (!result.canceled) {
       console.log(result);
       setimageUri(result?.assets[0].uri);
+      setimageName(result?.assets[0].fileName);
+      setimageType(result?.assets[0].mimeType);
+      setfileItem(result?.assets[0]);
     } else {
       alert("You did not select any image.");
     }
@@ -102,6 +119,9 @@ const makePost = () => {
     if (!result.canceled) {
       console.log(result);
       setimageUri(result?.assets[0].uri);
+      setimageName(result?.assets[0].fileName);
+      setimageType(result?.assets[0].mimeType);
+      setfileItem(result?.assets[0]);
     } else {
       alert("You did not select any image.");
     }
