@@ -17,7 +17,7 @@ const PostContent = ({ i, liked, data }) => {
   return (
     <View
       style={{
-        height: data.image !== "" ? 380 : 200,
+        height: data.image !== "" || data.image ? 380 : 200,
         alignSelf: "center",
         width: Dimensions.get("window").width * 0.99,
         margin: 3,
@@ -118,11 +118,11 @@ const PostContent = ({ i, liked, data }) => {
               fontFamily: "MMedium",
             }}
           >
-            {data?.content}
+            {`${data?.content}`.length ? data.content : ""}
           </Text>
         </View>
       </View>
-      {data.image !== "" ? (
+      {data.image !== "" || data.image ? (
         <TouchableOpacity>
           <Image
             source={{ uri: data.image }}

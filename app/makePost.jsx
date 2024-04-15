@@ -28,6 +28,7 @@ const makePost = () => {
   let [imageType, setimageType] = useState();
   let [user, setuser] = useState();
   let [fileItem, setfileItem] = useState();
+  let [active, setactive] = useState(true);
 
   let getUser = async () => {
     let u = await AsyncStorage.getItem("user");
@@ -86,25 +87,29 @@ const makePost = () => {
       });
       formData.append("email", userID);
       formData.append("content", content);
-      const response = await fetch("http://10.184.182.9:8080/post/makePost", {
-        method: "POST",
-        body: formData,
-        headers: {
-          Accept: "*/*",
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await fetch(
+        "https://jimo-media-backend.vercel.app/post/makePost",
+        {
+          method: "POST",
+          body: formData,
+          headers: {
+            Accept: "*/*",
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      ).catch((err) => console.log(err));
+      console.log(response);
+      let data = await response.json();
+      console.log(data);
+      if (data?.status) {
+        setcontent("");
+        router?.push("/pages/home");
+      }
     } catch (error) {
       setloading(false);
       console.log(error);
     }
 
-    // let data = await response;
-    // console.log(data);
-    // if (data?.status) {
-    //   setcontent("");
-    //   router?.push("/pages/home");
-    // }
     setloading(false);
   };
   const pickImageAsync = async () => {
@@ -141,6 +146,9 @@ const makePost = () => {
   };
   useEffect(() => {
     getUser();
+    if (`${content}`.length || `${imageUri}`.length) {
+      setactive(false);
+    }
   }, []);
 
   return (
@@ -191,10 +199,10 @@ const makePost = () => {
               gap: 5,
             }}
           >
-            <TouchableOpacity onPress={pickImageAsync}>
+            <TouchableOpacity onPress={openCameraAsync}>
               <Fontisto name="camera" size={24} color="grey" />
             </TouchableOpacity>
-            <TouchableOpacity onPress={openCameraAsync}>
+            <TouchableOpacity onPress={pickImageAsync}>
               <MaterialIcons name="image" size={28} color="grey" />
             </TouchableOpacity>
           </View>
@@ -213,6 +221,7 @@ const makePost = () => {
             justifyContent: "center",
           }}
           onPress={() => post()}
+          // disabled={active}
         >
           {!loading ? (
             <>
