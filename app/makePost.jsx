@@ -63,7 +63,6 @@ const makePost = () => {
     let userID = user?.email;
     console.log("Parsed ID: ", userID);
     setloading(true);
-    let bodyContent = new FormData();
     let headersList = {
       Accept: "*/*",
       "User-Agent": "Thunder Client (https://www.thunderclient.com)",
@@ -71,27 +70,39 @@ const makePost = () => {
     };
     console.log(fileItem);
     try {
+      console.log(
+        "Image Upload Params: ",
+        imageName,
+        " ",
+        imageType,
+        " ",
+        imageUri
+      );
       const formData = new FormData();
       formData.append("image", {
         uri: imageUri,
-        name: imageName, // You can change the filename if needed
-        type: imageType, // Change the type accordingly
+        name: imageName,
+        type: imageType,
       });
-      const response = await axios.post(
-        "http://10.184.182.9:8080/post/makePost",
-        formData
-      );
+      formData.append("email", userID);
+      const response = await fetch("http://10.184.182.9:8080/post/makePost", {
+        method: "POST",
+        body: formData,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
     } catch (error) {
       setloading(false);
       console.log(error);
     }
 
-    let data = await response?.json();
-    console.log(data);
-    if (data?.status) {
-      setcontent("");
-      router?.push("/pages/home");
-    }
+    // let data = await response;
+    // console.log(data);
+    // if (data?.status) {
+    //   setcontent("");
+    //   router?.push("/pages/home");
+    // }
     setloading(false);
   };
   const pickImageAsync = async () => {
