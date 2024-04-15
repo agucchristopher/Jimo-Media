@@ -85,10 +85,12 @@ const makePost = () => {
         type: imageType,
       });
       formData.append("email", userID);
+      formData.append("content", content);
       const response = await fetch("http://10.184.182.9:8080/post/makePost", {
         method: "POST",
         body: formData,
         headers: {
+          Accept: "*/*",
           "Content-Type": "multipart/form-data",
         },
       });
