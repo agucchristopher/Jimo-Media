@@ -11,7 +11,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Colors } from "../../assets/data";
 import InputText from "../../components/InputText";
@@ -22,6 +22,7 @@ import banks from "../../assets/banks.json";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 // import https from "https";
 import * as WebBrowser from "expo-web-browser";
+import { Paystack } from "react-native-paystack-webview";
 const wallet = () => {
   let [activeTab, setActiveTab] = useState("Send Money");
   const [modal, setmodal] = useState(false);
@@ -45,6 +46,7 @@ const wallet = () => {
   const [users, setusers] = useState([]);
   const [modalusers, setmodalusers] = useState(users);
   const [sendResponse, setSendResponse] = useState("");
+  const paystackWebViewRef = useRef();
   let getUser = async () => {
     let u = await AsyncStorage.getItem("user");
     u = JSON.parse(u);
@@ -141,6 +143,25 @@ const wallet = () => {
         .toString()
         .trim()
         .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+  let fundAccount = async () => {
+    let headersList = {
+      Accept: "*/*",
+      "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+      "Content-Type": "application/x-www-form-urlencoded",
+    };
+
+    let bodyContent = `email=${user?.email}&amount=2500`;
+
+    let response = await fetch("http://localhost:8080/fund", {
+      method: "POST",
+      body: bodyContent,
+      headers: headersList,
+    });
+
+    let data = await response.text();
+    console.log(data);
+    getUser();
   };
   let chargeUser = async () => {};
   useEffect(() => {
@@ -264,8 +285,22 @@ const wallet = () => {
               loading={loading}
               title={"Send Money"}
             />
+            <Paystack
+              paystackKey="pk_live_5a49fda06fe4a65164936a8722d1e01bcdd7cb36"
+              billingEmail="aguchris740@gmail.com"
+              amount={"2500.00"}
+              onCancel={(e) => {
+                // handle response here
+                console.log("Cancelled!");
+              }}
+              onSuccess={(res) => {
+                fundAccount();
+              }}
+              ref={paystackWebViewRef}
+            />
+
             <TouchableOpacity
-              // onPress={() => router.push("/signin")}
+              onPress={() => paystackWebViewRef.current.startTransaction()}
               style={{
                 height: 55,
                 width: Dimensions.get("screen").width * 0.92,

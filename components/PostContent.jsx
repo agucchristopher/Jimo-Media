@@ -1,8 +1,9 @@
 import { Dimensions, Image, Text, TouchableOpacity, View } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Colors } from "../assets/data";
-import { Svg, Path } from "react-native-svg";
+import { Svg, Path, SvgUri } from "react-native-svg";
 import { router } from "expo-router";
+import { SvgXml } from "react-native-svg";
 const PostContent = ({ i, liked, data }) => {
   let [likedContent, setlikedContent] = useState(liked);
   const [svgContent, setSvgContent] = useState(null);
@@ -59,20 +60,11 @@ const PostContent = ({ i, liked, data }) => {
             })
           }
         >
-          <Image
-            source={{
-              // uri: `https://avatar.oxro.io/avatar.svg?name=${
-              //   data?.owner?.username
-              // }&background=${randomColors()}&length=1`,
-              uri: "https://avatar.oxro.io/avatar.svg?name=Jabulani&background=6ab04c&color=000",
-            }}
-            style={{
-              height: 55,
-              width: 55,
-              borderRadius: 1000,
-              resizeMode: "cover",
-            }}
-          />
+          {svgContent ? (
+            <SvgXml width="100%" height="100%" xml={svgContent} />
+          ) : (
+            ""
+          )}
         </TouchableOpacity>
         <View
           style={{
