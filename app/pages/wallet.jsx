@@ -153,7 +153,7 @@ const wallet = () => {
 
     let bodyContent = `email=${user?.email}&amount=2500`;
 
-    let response = await fetch("http://localhost:8080/fund", {
+    let response = await fetch("https://jimo-media-backend.vercel.app/fund", {
       method: "POST",
       body: bodyContent,
       headers: headersList,
