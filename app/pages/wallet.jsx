@@ -101,6 +101,7 @@ const wallet = () => {
   };
   let sendMoney = async () => {
     setloading(true);
+    seterror(false);
     let headersList = {
       Accept: "*/*",
       "User-Agent": "Thunder Client (https://www.thunderclient.com)",
@@ -132,6 +133,7 @@ const wallet = () => {
       setmodal(true);
     }
     if (!data.status) {
+      console.log(data);
       seterror(true);
       setSendResponse(data?.message);
       setmodal(true);
@@ -381,7 +383,10 @@ const wallet = () => {
                       margin: 5,
                       marginRight: 10,
                     }}
-                    onPress={() => setmodal(false)}
+                    onPress={() => {
+                      setmodal(false);
+                      seterror(false);
+                    }}
                   >
                     <Svg
                       height={25}
@@ -400,9 +405,9 @@ const wallet = () => {
                     }
                     style={{
                       alignSelf: "center",
-                      width: "45%",
-                      aspectRatio: 1 / 2,
-                      height: 120,
+                      width: "50%",
+                      aspectRatio: error ? 1 / 2 : 1,
+                      height: error ? 120 : 90,
                       resizeMode: "contain",
                     }}
                   />
