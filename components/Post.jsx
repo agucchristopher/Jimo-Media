@@ -11,6 +11,7 @@ import { router } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 const Post = ({}) => {
   let [user, setuser] = useState();
+  let [loading, setloading] = useState(false);
   let getUser = async () => {
     let u = await AsyncStorage.getItem("user");
     u = JSON.parse(u);
@@ -39,6 +40,7 @@ const Post = ({}) => {
     console.log("data: ", data);
     if (data.status) {
       let jsonUser = JSON.stringify(data?.user);
+      setuser(data?.user);
       await AsyncStorage.setItem("user", jsonUser);
     }
   };
