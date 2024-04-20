@@ -288,8 +288,8 @@ const wallet = () => {
               title={"Send Money"}
             />
             <Paystack
-              paystackKey="pk_live_5a49fda06fe4a65164936a8722d1e01bcdd7cb36"
-              billingEmail="aguchris740@gmail.com"
+              paystackKey="pk_live_4a92321633aa4d06d8a6a694d1b226563d9988db"
+              billingEmail="cryptowiscobus@gmail.com"
               amount={"2500.00"}
               onCancel={(e) => {
                 // handle response here

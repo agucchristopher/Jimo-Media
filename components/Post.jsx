@@ -6,9 +6,46 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { router } from "expo-router";
-const Post = ({ user }) => {
+import AsyncStorage from "@react-native-async-storage/async-storage";
+const Post = ({}) => {
+  let [user, setuser] = useState();
+  let getUser = async () => {
+    let u = await AsyncStorage.getItem("user");
+    u = JSON.parse(u);
+    console.log("U: ", u);
+    let headersList = {
+      Accept: "*/*",
+      "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+      "Content-Type": "application/x-www-form-urlencoded",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST,PATCH,OPTIONS",
+      "Access-Control-Allow-Headers": "application/x-www-form-urlencoded",
+    };
+
+    let bodyContent = `id=${u?._id}`;
+
+    let response = await fetch(
+      "https://jimo-media-backend.vercel.app/getUser",
+      {
+        method: "POST",
+        body: bodyContent,
+        headers: headersList,
+      }
+    ).finally(() => setloading(false));
+
+    let data = await response.json();
+    console.log("data: ", data);
+    if (data.status) {
+      let jsonUser = JSON.stringify(data?.user);
+      await AsyncStorage.setItem("user", jsonUser);
+    }
+  };
+  useEffect(() => {
+    getUser();
+  }, []);
+  console.log("User: " + user);
   return (
     <View
       style={{
@@ -32,7 +69,7 @@ const Post = ({ user }) => {
       >
         <Image
           source={{
-            uri: `https://avatar.oxro.io/avatar.svg?name=${user?.username}username}&background=Ff0000&length=1`,
+            uri: user?.pfp,
           }}
           style={{
             height: 50,

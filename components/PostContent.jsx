@@ -33,7 +33,7 @@ const PostContent = ({ i, liked, data }) => {
   return (
     <View
       style={{
-        height: data.image !== "" || data.image ? 380 : 200,
+        height: data.image !== "" || data.image ? 320 : 150,
         alignSelf: "center",
         width: Dimensions.get("window").width * 0.99,
         margin: 3,
@@ -60,11 +60,16 @@ const PostContent = ({ i, liked, data }) => {
             })
           }
         >
-          {svgContent ? (
-            <SvgXml width="100%" height="100%" xml={svgContent} />
-          ) : (
-            ""
-          )}
+          <Image
+            height={25}
+            width={25}
+            source={{
+              uri: data?.owner.avatar
+                ? data.owner.avatar
+                : "https://api.dicebear.com/8.x/pixel-art/svg",
+            }}
+            style={{ width: 45, height: 45, borderRadius: 1000 }}
+          />
         </TouchableOpacity>
         <View
           style={{
@@ -126,7 +131,9 @@ const PostContent = ({ i, liked, data }) => {
               fontFamily: "MMedium",
             }}
           >
-            {`${data?.content}`.length ? data.content : ""}
+            {`${data?.content}`.length && data?.content !== "false"
+              ? data.content
+              : ""}
           </Text>
         </View>
       </View>
