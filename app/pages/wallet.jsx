@@ -130,6 +130,8 @@ const wallet = () => {
       let jsonUser = JSON.stringify(data?.user);
       await AsyncStorage.setItem("user", jsonUser).then(() => getUser());
       setSendResponse(data?.message);
+      setsendamount();
+      setto();
       setmodal(true);
     }
     if (!data.status) {

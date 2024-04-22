@@ -68,7 +68,7 @@ const PostContent = ({ i, liked, data }) => {
                 ? data.owner.avatar
                 : "https://api.dicebear.com/8.x/pixel-art/svg",
             }}
-            style={{ width: 45, height: 45, borderRadius: 1000 }}
+            style={{ width: 45, height: 40, borderRadius: 1000 }}
           />
         </TouchableOpacity>
         <View
