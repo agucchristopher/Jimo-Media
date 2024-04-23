@@ -44,6 +44,8 @@ const wallet = () => {
   const [to, setto] = useState(false);
   const [user, setuser] = useState();
   const [users, setusers] = useState([]);
+  const [fundAmount, setfundamount] = useState(0);
+  const [fundmodal, setfundmodal] = useState(false);
   const [modalusers, setmodalusers] = useState(users);
   const [sendResponse, setSendResponse] = useState("");
   const paystackWebViewRef = useRef();
@@ -292,7 +294,7 @@ const wallet = () => {
             <Paystack
               paystackKey="pk_live_4a92321633aa4d06d8a6a694d1b226563d9988db"
               billingEmail="cryptowiscobus@gmail.com"
-              amount={"2500.00"}
+              amount={`${fundAmount}`}
               onCancel={(e) => {
                 // handle response here
                 console.log("Cancelled!");
@@ -304,7 +306,7 @@ const wallet = () => {
             />
 
             <TouchableOpacity
-              onPress={() => paystackWebViewRef.current.startTransaction()}
+              onPress={() => setfundmodal(true)}
               style={{
                 height: 55,
                 width: Dimensions.get("screen").width * 0.92,
@@ -553,6 +555,102 @@ const wallet = () => {
                         </TouchableOpacity>
                       );
                     }}
+                  />
+                </View>
+              </View>
+            </Modal>
+            <Modal
+              visible={fundmodal}
+              animationType="fade"
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+                alignContent: "center",
+                padding: 5,
+              }}
+              transparent
+            >
+              <TouchableOpacity
+                onPress={() => setshowbanks(false)}
+                style={{
+                  height: "100%",
+                  backgroundColor: "#000",
+                  // flex: 1,
+                  opacity: 0.7,
+                  alignSelf: "center",
+                  justifyContent: "center",
+                  width: "100%",
+                  alignContent: "center",
+                }}
+              ></TouchableOpacity>
+              <View
+                onPress={() => setshowbanks(false)}
+                style={{
+                  height: "100%",
+                  backgroundColor: "transparent",
+                  alignSelf: "center",
+                  justifyContent: "center",
+                  width: "95%",
+                  alignContent: "center",
+                  position: "absolute",
+                  borderRadius: 15,
+                }}
+              >
+                <View
+                  style={{
+                    height: "30%",
+                    backgroundColor: "white",
+                    alignSelf: "center",
+                    width: "100%",
+                    alignContent: "center",
+                    position: "absolute",
+                    borderRadius: 30,
+                    gap: 15,
+                    padding: 10,
+                  }}
+                >
+                  <TouchableOpacity
+                    style={{
+                      alignSelf: "flex-end",
+                      margin: 5,
+                      marginRight: 10,
+                    }}
+                    onPress={() => setusernameModal(false)}
+                  >
+                    <Svg
+                      height={25}
+                      width={25}
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <Path d="M12.0007 10.5865L16.9504 5.63672L18.3646 7.05093L13.4149 12.0007L18.3646 16.9504L16.9504 18.3646L12.0007 13.4149L7.05093 18.3646L5.63672 16.9504L10.5865 12.0007L5.63672 7.05093L7.05093 5.63672L12.0007 10.5865Z" />
+                    </Svg>
+                  </TouchableOpacity>
+                  <TextInput
+                    placeholder="Amount"
+                    style={{
+                      marginTop: 5,
+                      height: 55,
+                      flexDirection: "row",
+                      width: Dimensions.get("screen").width * 0.85,
+                      backgroundColor: "#F1F1F1",
+                      borderRadius: 10,
+                      alignItems: "center",
+                      padding: 10,
+                      paddingLeft: 15,
+                    }}
+                    onChangeText={(e) => {
+                      setfundamount(e);
+                    }}
+                  ></TextInput>
+                  <Button
+                    bg={Colors.primary}
+                    onPress={() => {
+                      setfundmodal(false);
+                      paystackWebViewRef.current.startTransaction();
+                    }}
+                    title={"Fund Account"}
                   />
                 </View>
               </View>

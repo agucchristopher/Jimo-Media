@@ -142,12 +142,12 @@ const PostContent = ({ i, liked, data }) => {
           <Image
             source={{ uri: data.image }}
             style={{
-              // height: 200,
+              height: 120,
               width: "100%",
               resizeMode: "contain",
               marginTop: 10,
               borderRadius: 5,
-              aspectRatio: 2 / 1,
+              aspectRatio: 0.5,
             }}
           />
         </TouchableOpacity>
