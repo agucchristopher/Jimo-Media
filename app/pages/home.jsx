@@ -29,7 +29,7 @@ const home = () => {
     let bodyContent = "email=aguchris740@gmail.com";
 
     let response = await fetch(
-      "https://jimo-media-backend.vercel.app/post/getPosts",
+      "https://jimo-media-backend.onrender.com/post/getPosts",
       {
         method: "POST",
         body: bodyContent,
@@ -60,7 +60,7 @@ const home = () => {
     let bodyContent = `id=${u?._id}`;
 
     let response = await fetch(
-      "https://jimo-media-backend.vercel.app/getUser",
+      "https://jimo-media-backend.onrender.com/getUser",
       {
         method: "POST",
         body: bodyContent,

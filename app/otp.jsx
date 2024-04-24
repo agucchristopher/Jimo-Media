@@ -29,7 +29,7 @@ const otp = () => {
     let bodyContent = `email=${email}`;
 
     let response = await fetch(
-      "https://jimo-media-backend.vercel.app/users/verifyOtp",
+      "https://jimo-media-backend.onrender.com/users/verifyOtp",
       {
         method: "POST",
         body: bodyContent,

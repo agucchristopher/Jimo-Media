@@ -27,7 +27,7 @@ const signin = () => {
     let bodyContent = `email=${email}&password=${password}`;
 
     let response = await fetch(
-      "https://jimo-media-backend.vercel.app/users/signin",
+      "https://jimo-media-backend.onrender.com/users/signin",
       {
         method: "POST",
         body: bodyContent,

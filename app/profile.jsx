@@ -44,7 +44,7 @@ const profile = ({ popup }) => {
     let bodyContent = `id=${id}`;
 
     let response = await fetch(
-      "https://jimo-media-backend.vercel.app/getUser",
+      "https://jimo-media-backend.onrender.com/getUser",
       {
         method: "POST",
         body: bodyContent,

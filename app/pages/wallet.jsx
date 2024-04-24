@@ -61,7 +61,7 @@ const wallet = () => {
     let bodyContent = `email=${u?.email}`;
 
     let response = await fetch(
-      "https://jimo-media-backend.vercel.app/getUser",
+      "https://jimo-media-backend.onrender.com/getUser",
       {
         method: "POST",
         body: bodyContent,
@@ -85,7 +85,7 @@ const wallet = () => {
     };
 
     let response = await fetch(
-      "https://jimo-media-backend.vercel.app/getUsers",
+      "https://jimo-media-backend.onrender.com/getUsers",
       {
         method: "POST",
         headers: headersList,
@@ -113,7 +113,7 @@ const wallet = () => {
     let bodyContent = `email=${user?.email}&amount=${sendAmount}&to=${to}`;
 
     let response = await fetch(
-      "https://jimo-media-backend.vercel.app/users/sendMoney",
+      "https://jimo-media-backend.onrender.com/users/sendMoney",
       {
         method: "POST",
         body: bodyContent,
@@ -159,7 +159,7 @@ const wallet = () => {
 
     let bodyContent = `email=${user?.email}&amount=2500`;
 
-    let response = await fetch("https://jimo-media-backend.vercel.app/fund", {
+    let response = await fetch("https://jimo-media-backend.onrender.com/fund", {
       method: "POST",
       body: bodyContent,
       headers: headersList,

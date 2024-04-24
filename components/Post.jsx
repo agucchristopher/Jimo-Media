@@ -28,7 +28,7 @@ const Post = ({}) => {
     let bodyContent = `id=${u?._id}`;
 
     let response = await fetch(
-      "https://jimo-media-backend.vercel.app/getUser",
+      "https://jimo-media-backend.onrender.com/getUser",
       {
         method: "POST",
         body: bodyContent,

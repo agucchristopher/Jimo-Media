@@ -4,10 +4,12 @@ import { Colors } from "../assets/data";
 import { Svg, Path, SvgUri } from "react-native-svg";
 import { router } from "expo-router";
 import { SvgXml } from "react-native-svg";
+import BottomSheet from "@gorhom/bottom-sheet";
+import { useMemo } from "react";
 const PostContent = ({ i, liked, data }) => {
   let [likedContent, setlikedContent] = useState(liked);
   const [svgContent, setSvgContent] = useState(null);
-
+  const snapPoints = useMemo(() => ["1%", "50%", "70%"], []);
   useEffect(() => {
     // Fetch the SVG content from an external URL
     fetch(
@@ -147,7 +149,8 @@ const PostContent = ({ i, liked, data }) => {
               resizeMode: "contain",
               marginTop: 10,
               borderRadius: 5,
-              aspectRatio: 0.5,
+              aspectRatio: 0.9,
+              alignSelf: "center",
             }}
           />
         </TouchableOpacity>
@@ -231,6 +234,15 @@ const PostContent = ({ i, liked, data }) => {
           </Svg>
         </TouchableOpacity>
       </View>
+      {/* <BottomSheet index={1} snapPoints={snapPoints}> */}
+      {/* <View
+          style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+        >
+          <Text style={{ fontSize: 24, fontWeight: "600", padding: 20 }}>
+            Comments
+          </Text> */}
+      {/* </View> */}
+      {/* </BottomSheet> */}
     </View>
   );
 };

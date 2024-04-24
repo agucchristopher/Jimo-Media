@@ -42,7 +42,7 @@ const makePost = () => {
     let bodyContent = `email=${u?.email}`;
 
     let response = await fetch(
-      "https://jimo-media-backend.vercel.app/getUser",
+      "https://jimo-media-backend.onrender.com/getUser",
       {
         method: "POST",
         body: bodyContent,
@@ -88,7 +88,7 @@ const makePost = () => {
       formData.append("email", userID);
       formData.append("content", content);
       const response = await fetch(
-        "https://jimo-media-backend.vercel.app/post/makePost",
+        "https://jimo-media-backend.onrender.com/post/makePost",
         {
           method: "POST",
           body: formData,
