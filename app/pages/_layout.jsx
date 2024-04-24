@@ -25,6 +25,8 @@ export default () => {
           paddingTop: 10,
           backgroundColor: "#f9f9f9",
           padding: 5,
+          statusBarColor: "#fff",
+          statusBarStyle: "dark",
         },
         tabBarLabel: ({ color, focused, children }) => {
           return (

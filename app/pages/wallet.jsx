@@ -1,9 +1,11 @@
 import {
+  ActivityIndicator,
   Alert,
   Dimensions,
   FlatList,
   Image,
   Modal,
+  RefreshControl,
   ScrollView,
   StyleSheet,
   Text,
@@ -21,6 +23,8 @@ import Dropdown from "../../components/Dropdown";
 import banks from "../../assets/banks.json";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 // import https from "https";
+import BottomSheet from "@gorhom/bottom-sheet";
+import { useMemo } from "react";
 import * as WebBrowser from "expo-web-browser";
 import { Paystack } from "react-native-paystack-webview";
 const wallet = () => {
@@ -48,7 +52,9 @@ const wallet = () => {
   const [fundmodal, setfundmodal] = useState(false);
   const [modalusers, setmodalusers] = useState(users);
   const [sendResponse, setSendResponse] = useState("");
+  const [refreshing, setrefreshing] = useState(false);
   const paystackWebViewRef = useRef();
+  const snapPoints = useMemo(() => ["5%", "2.5%"], []);
   let getUser = async () => {
     let u = await AsyncStorage.getItem("user");
     u = JSON.parse(u);
@@ -177,7 +183,19 @@ const wallet = () => {
 
   return (
     <SafeAreaView style={{ flex: 1, padding: 0, backgroundColor: "white" }}>
-      <ScrollView style={{ flex: 1, backgroundColor: "white", padding: 15 }}>
+      <ScrollView
+        style={{ flex: 1, backgroundColor: "white", padding: 15 }}
+        refreshControl={
+          <RefreshControl
+            onRefresh={() => {
+              setrefreshing(true);
+              getUsers().finally(() => setrefreshing(false));
+              getUser().finally(() => setrefreshing(false));
+            }}
+            refreshing={refreshing}
+          />
+        }
+      >
         <Text
           style={{
             fontSize: 20,
@@ -599,7 +617,7 @@ const wallet = () => {
               >
                 <View
                   style={{
-                    height: "30%",
+                    height: 300,
                     backgroundColor: "white",
                     alignSelf: "center",
                     width: "100%",
@@ -607,7 +625,7 @@ const wallet = () => {
                     position: "absolute",
                     borderRadius: 30,
                     gap: 15,
-                    padding: 10,
+                    padding: 15,
                   }}
                 >
                   <TouchableOpacity
@@ -616,7 +634,7 @@ const wallet = () => {
                       margin: 5,
                       marginRight: 10,
                     }}
-                    onPress={() => setusernameModal(false)}
+                    onPress={() => setfundmodal(false)}
                   >
                     <Svg
                       height={25}
@@ -639,19 +657,43 @@ const wallet = () => {
                       alignItems: "center",
                       padding: 10,
                       paddingLeft: 15,
+                      alignSelf: "center",
                     }}
                     onChangeText={(e) => {
                       setfundamount(e);
                     }}
                   ></TextInput>
-                  <Button
-                    bg={Colors.primary}
+                  {/* <Button bg={Colors.primary} title={"Fund Account"} /> */}
+                  <TouchableOpacity
                     onPress={() => {
                       setfundmodal(false);
                       paystackWebViewRef.current.startTransaction();
                     }}
-                    title={"Fund Account"}
-                  />
+                    style={{
+                      height: 50,
+                      width: Dimensions.get("screen").width * 0.85,
+                      backgroundColor: Colors.primary,
+                      alignSelf: "center",
+                      borderRadius: 10,
+                      justifyContent: "center",
+                      marginTop: 5,
+                    }}
+                  >
+                    {loading ? (
+                      <ActivityIndicator color={"white"} size={24} />
+                    ) : (
+                      <Text
+                        style={{
+                          color: "white",
+                          fontSize: 16,
+                          textAlign: "center",
+                          fontFamily: "MBold",
+                        }}
+                      >
+                        {"Fund Account"}
+                      </Text>
+                    )}
+                  </TouchableOpacity>
                 </View>
               </View>
             </Modal>

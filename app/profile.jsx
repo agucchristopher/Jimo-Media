@@ -170,6 +170,7 @@ const profile = ({ popup }) => {
         {You ? (
           <View style={{ flexDirection: "row", gap: 1, alignSelf: "center" }}>
             <TouchableOpacity
+              onPress={() => router.push("/editprofile")}
               style={{
                 backgroundColor: "#F1F1F1",
                 width: width * 0.4,
