@@ -125,7 +125,7 @@ const makePost = () => {
       setimageType(result?.assets[0].mimeType);
       setfileItem(result?.assets[0]);
     } else {
-      alert("You did not select any image.");
+      // alert("You did not select any image.");
     }
   };
   const openCameraAsync = async () => {
@@ -170,7 +170,7 @@ const makePost = () => {
         >
           <View style={{ flexDirection: "row", gap: 5, height: "80%" }}>
             <Image
-              source={require("../assets/post.jpg")}
+              source={{ uri: user?.pfp }}
               style={{
                 height: 60,
                 width: 60,
