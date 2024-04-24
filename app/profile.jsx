@@ -28,6 +28,7 @@ const profile = ({ popup }) => {
     let u = await AsyncStorage.getItem("user");
     u = JSON.parse(u);
     let owner = JSON.parse(params?.owner);
+    console.log(owner);
     if (owner.id === u?._id) {
       console.log("your profile", u, params?.owner);
       setYou(true);

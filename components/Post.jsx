@@ -65,7 +65,7 @@ const Post = ({}) => {
         onPress={() =>
           router.push({
             pathname: "/profile",
-            params: { owner: JSON.stringify(user) },
+            params: { owner: JSON.stringify({ id: user._id }) },
           })
         }
       >

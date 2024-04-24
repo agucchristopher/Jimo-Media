@@ -83,10 +83,16 @@ const profile = () => {
             gap: 5,
             padding: 5,
           }}
+          onPress={() =>
+            router.push({
+              pathname: "/profile",
+              params: { owner: JSON.stringify({ id: user._id }) },
+            })
+          }
         >
           <Image
             source={{
-              uri: `https://avatar.oxro.io/avatar.svg?name=${user?.username}&background=Ff0000&length=1`,
+              uri: user?.pfp,
             }}
             style={{
               height: 30,
