@@ -34,7 +34,7 @@ export default function RootLayout() {
   }
 
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
+    <>
       <Stack
         initialRouteName={user == null || undefined ? "index" : "pages"}
         screenOptions={{
@@ -68,6 +68,6 @@ export default function RootLayout() {
         <Stack.Screen name="profile" options={{ headerShown: false }} />
         <Stack.Screen name="editprofile" options={{ headerShown: false }} />
       </Stack>
-    </GestureHandlerRootView>
+    </>
   );
 }
