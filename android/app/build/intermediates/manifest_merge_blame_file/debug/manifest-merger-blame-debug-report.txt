@@ -1,0 +1,397 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.jimo.mediaapp"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="23"
+9        android:targetSdkVersion="34" />
+10
+11    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+11-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:5:3-75
+11-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:5:20-73
+12    <uses-permission android:name="android.permission.INTERNET" />
+12-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:2:3-64
+12-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:2:20-62
+13    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+13-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:3:3-77
+13-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:3:20-75
+14    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+14-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:4:3-68
+14-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:4:20-66
+15    <uses-permission android:name="android.permission.VIBRATE" />
+15-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:6:3-63
+15-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:6:20-61
+16    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+16-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:7:3-78
+16-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:7:20-76
+17
+18    <queries>
+18-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:8:3-14:13
+19        <intent>
+19-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:9:5-13:14
+20            <action android:name="android.intent.action.VIEW" />
+20-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:10:7-58
+20-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:10:15-56
+21
+22            <category android:name="android.intent.category.BROWSABLE" />
+22-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:11:7-67
+22-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:11:17-65
+23
+24            <data android:scheme="https" />
+24-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:12:7-37
+24-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:12:13-35
+25        </intent>
+26        <!-- Query open documents -->
+27        <intent>
+27-->[:expo-file-system] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:15:9-17:18
+28            <action android:name="android.intent.action.OPEN_DOCUMENT_TREE" />
+28-->[:expo-file-system] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-79
+28-->[:expo-file-system] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:16:21-76
+29        </intent>
+30        <intent>
+30-->[:expo-image-picker] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:17:9-21:18
+31
+32            <!-- Required for picking images from the camera roll if targeting API 30 -->
+33            <action android:name="android.media.action.IMAGE_CAPTURE" />
+33-->[:expo-image-picker] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:20:13-73
+33-->[:expo-image-picker] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:20:21-70
+34        </intent>
+35        <intent>
+35-->[:expo-image-picker] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:22:9-26:18
+36
+37            <!-- Required for picking images from the camera if targeting API 30 -->
+38            <action android:name="android.media.action.ACTION_VIDEO_CAPTURE" />
+38-->[:expo-image-picker] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:25:13-80
+38-->[:expo-image-picker] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:25:21-77
+39        </intent>
+40        <intent>
+40-->[:expo-web-browser] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-web-browser\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:8:9-12:18
+41
+42            <!-- Required for opening tabs if targeting API 30 -->
+43            <action android:name="android.support.customtabs.action.CustomTabsService" />
+43-->[:expo-web-browser] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-web-browser\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-90
+43-->[:expo-web-browser] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-web-browser\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:11:21-87
+44        </intent>
+45        <intent>
+45-->[com.github.CanHub:Android-Image-Cropper:4.3.1] C:\Users\USER\.gradle\caches\transforms-3\d048bc2aaf9fd18ffb20355d65713a8f\transformed\jetified-Android-Image-Cropper-4.3.1\AndroidManifest.xml:10:9-16:18
+46            <action android:name="android.intent.action.GET_CONTENT" />
+46-->[com.github.CanHub:Android-Image-Cropper:4.3.1] C:\Users\USER\.gradle\caches\transforms-3\d048bc2aaf9fd18ffb20355d65713a8f\transformed\jetified-Android-Image-Cropper-4.3.1\AndroidManifest.xml:11:13-72
+46-->[com.github.CanHub:Android-Image-Cropper:4.3.1] C:\Users\USER\.gradle\caches\transforms-3\d048bc2aaf9fd18ffb20355d65713a8f\transformed\jetified-Android-Image-Cropper-4.3.1\AndroidManifest.xml:11:21-69
+47
+48            <category android:name="android.intent.category.OPENABLE" />
+48-->[com.github.CanHub:Android-Image-Cropper:4.3.1] C:\Users\USER\.gradle\caches\transforms-3\d048bc2aaf9fd18ffb20355d65713a8f\transformed\jetified-Android-Image-Cropper-4.3.1\AndroidManifest.xml:13:13-73
+48-->[com.github.CanHub:Android-Image-Cropper:4.3.1] C:\Users\USER\.gradle\caches\transforms-3\d048bc2aaf9fd18ffb20355d65713a8f\transformed\jetified-Android-Image-Cropper-4.3.1\AndroidManifest.xml:13:23-70
+49
+50            <data android:mimeType="*/*" />
+50-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:12:7-37
+51        </intent>
+52    </queries>
+53
+54    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- Required for picking images from camera directly -->
+54-->[:expo-updates] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-updates\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-79
+54-->[:expo-updates] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-updates\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:7:22-76
+55    <uses-permission android:name="android.permission.CAMERA" />
+55-->[:expo-image-picker] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:8:5-65
+55-->[:expo-image-picker] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:8:22-62
+56    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+56-->[:expo-image-picker] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:13:5-76
+56-->[:expo-image-picker] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:13:22-73
+57    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+57-->[:expo-image-picker] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:5-75
+57-->[:expo-image-picker] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:22-72
+58    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+58-->[com.facebook.flipper:flipper:0.201.0] C:\Users\USER\.gradle\caches\transforms-3\75f373ab02791b43c978581e8a1fa136\transformed\jetified-flipper-0.201.0\AndroidManifest.xml:14:5-76
+58-->[com.facebook.flipper:flipper:0.201.0] C:\Users\USER\.gradle\caches\transforms-3\75f373ab02791b43c978581e8a1fa136\transformed\jetified-flipper-0.201.0\AndroidManifest.xml:14:22-73
+59
+60    <permission
+60-->[androidx.core:core:1.12.0] C:\Users\USER\.gradle\caches\transforms-3\e939650e1ac4a1a10b17ac5836007ece\transformed\core-1.12.0\AndroidManifest.xml:22:5-24:47
+61        android:name="com.jimo.mediaapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+61-->[androidx.core:core:1.12.0] C:\Users\USER\.gradle\caches\transforms-3\e939650e1ac4a1a10b17ac5836007ece\transformed\core-1.12.0\AndroidManifest.xml:23:9-81
+62        android:protectionLevel="signature" />
+62-->[androidx.core:core:1.12.0] C:\Users\USER\.gradle\caches\transforms-3\e939650e1ac4a1a10b17ac5836007ece\transformed\core-1.12.0\AndroidManifest.xml:24:9-44
+63
+64    <uses-permission android:name="com.jimo.mediaapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+64-->[androidx.core:core:1.12.0] C:\Users\USER\.gradle\caches\transforms-3\e939650e1ac4a1a10b17ac5836007ece\transformed\core-1.12.0\AndroidManifest.xml:26:5-97
+64-->[androidx.core:core:1.12.0] C:\Users\USER\.gradle\caches\transforms-3\e939650e1ac4a1a10b17ac5836007ece\transformed\core-1.12.0\AndroidManifest.xml:26:22-94
+65
+66    <application
+66-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:15:3-35:17
+67        android:name="com.jimo.mediaapp.MainApplication"
+67-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:15:16-47
+68        android:allowBackup="true"
+68-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:15:162-188
+69        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+69-->[androidx.core:core:1.12.0] C:\Users\USER\.gradle\caches\transforms-3\e939650e1ac4a1a10b17ac5836007ece\transformed\core-1.12.0\AndroidManifest.xml:28:18-86
+70        android:debuggable="true"
+71        android:extractNativeLibs="false"
+72        android:icon="@mipmap/ic_launcher"
+72-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:15:81-115
+73        android:label="@string/app_name"
+73-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:15:48-80
+74        android:roundIcon="@mipmap/ic_launcher_round"
+74-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:15:116-161
+75        android:theme="@style/AppTheme"
+75-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:15:189-220
+76        android:usesCleartextTraffic="true" >
+76-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\debug\AndroidManifest.xml:6:18-53
+77        <meta-data
+77-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:16:5-82
+78            android:name="expo.modules.updates.ENABLED"
+78-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:16:16-59
+79            android:value="true" />
+79-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:16:60-80
+80        <meta-data
+80-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:17:5-119
+81            android:name="expo.modules.updates.EXPO_RUNTIME_VERSION"
+81-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:17:16-72
+82            android:value="@string/expo_runtime_version" />
+82-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:17:73-117
+83        <meta-data
+83-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:18:5-105
+84            android:name="expo.modules.updates.EXPO_UPDATES_CHECK_ON_LAUNCH"
+84-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:18:16-80
+85            android:value="ALWAYS" />
+85-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:18:81-103
+86        <meta-data
+86-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:19:5-99
+87            android:name="expo.modules.updates.EXPO_UPDATES_LAUNCH_WAIT_MS"
+87-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:19:16-79
+88            android:value="0" />
+88-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:19:80-97
+89        <meta-data
+89-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:20:5-141
+90            android:name="expo.modules.updates.EXPO_UPDATE_URL"
+90-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:20:16-67
+91            android:value="https://u.expo.dev/362136a3-dad4-440f-8993-6f7fcb7786c6" />
+91-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:20:68-139
+92
+93        <activity
+93-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:21:5-33:16
+94            android:name="com.jimo.mediaapp.MainActivity"
+94-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:21:15-43
+95            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|uiMode"
+95-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:21:44-134
+96            android:exported="true"
+96-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:21:256-279
+97            android:launchMode="singleTask"
+97-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:21:135-166
+98            android:screenOrientation="portrait"
+98-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:21:280-316
+99            android:theme="@style/Theme.App.SplashScreen"
+99-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:21:210-255
+100            android:windowSoftInputMode="adjustResize" >
+100-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:21:167-209
+101            <intent-filter>
+101-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:22:7-25:23
+102                <action android:name="android.intent.action.MAIN" />
+102-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:23:9-60
+102-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:23:17-58
+103
+104                <category android:name="android.intent.category.LAUNCHER" />
+104-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:24:9-68
+104-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:24:19-66
+105            </intent-filter>
+106            <intent-filter>
+106-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:26:7-32:23
+107                <action android:name="android.intent.action.VIEW" />
+107-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:10:7-58
+107-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:10:15-56
+108
+109                <category android:name="android.intent.category.DEFAULT" />
+109-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:28:9-67
+109-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:28:19-65
+110                <category android:name="android.intent.category.BROWSABLE" />
+110-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:11:7-67
+110-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:11:17-65
+111
+112                <data android:scheme="myapp" />
+112-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:12:7-37
+112-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:12:13-35
+113                <data android:scheme="com.jimo.mediaapp" />
+113-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:12:7-37
+113-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:12:13-35
+114            </intent-filter>
+115        </activity>
+116        <activity
+116-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:34:5-106
+117            android:name="com.facebook.react.devsupport.DevSettingsActivity"
+117-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:34:15-79
+118            android:exported="false" />
+118-->C:\Users\USER\Desktop\Jimo-Media-App\android\app\src\main\AndroidManifest.xml:34:80-104
+119
+120        <provider
+120-->[:expo-file-system] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:21:9-30:20
+121            android:name="expo.modules.filesystem.FileSystemFileProvider"
+121-->[:expo-file-system] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:22:13-74
+122            android:authorities="com.jimo.mediaapp.FileSystemFileProvider"
+122-->[:expo-file-system] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:23:13-74
+123            android:exported="false"
+123-->[:expo-file-system] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:24:13-37
+124            android:grantUriPermissions="true" >
+124-->[:expo-file-system] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:25:13-47
+125            <meta-data
+125-->[:expo-file-system] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:27:13-29:70
+126                android:name="android.support.FILE_PROVIDER_PATHS"
+126-->[:expo-file-system] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:28:17-67
+127                android:resource="@xml/file_system_provider_paths" />
+127-->[:expo-file-system] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:29:17-67
+128        </provider>
+129
+130        <service
+130-->[:expo-image-picker] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:30:9-42:19
+131            android:name="com.google.android.gms.metadata.ModuleDependencies"
+131-->[:expo-image-picker] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:31:13-78
+132            android:enabled="false"
+132-->[:expo-image-picker] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:32:13-36
+133            android:exported="false" >
+133-->[:expo-image-picker] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:33:13-37
+134            <intent-filter>
+134-->[:expo-image-picker] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:35:13-37:29
+135                <action android:name="com.google.android.gms.metadata.MODULE_DEPENDENCIES" />
+135-->[:expo-image-picker] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:36:17-94
+135-->[:expo-image-picker] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:36:25-91
+136            </intent-filter>
+137
+138            <meta-data
+138-->[:expo-image-picker] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:39:13-41:36
+139                android:name="photopicker_activity:0:required"
+139-->[:expo-image-picker] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:40:17-63
+140                android:value="" />
+140-->[:expo-image-picker] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:41:17-33
+141        </service>
+142
+143        <activity
+143-->[:expo-image-picker] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:44:9-46:59
+144            android:name="com.canhub.cropper.CropImageActivity"
+144-->[:expo-image-picker] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:45:13-64
+145            android:exported="true"
+145-->[com.github.CanHub:Android-Image-Cropper:4.3.1] C:\Users\USER\.gradle\caches\transforms-3\d048bc2aaf9fd18ffb20355d65713a8f\transformed\jetified-Android-Image-Cropper-4.3.1\AndroidManifest.xml:35:13-36
+146            android:theme="@style/Base.Theme.AppCompat" /> <!-- https://developer.android.com/guide/topics/manifest/provider-element.html -->
+146-->[:expo-image-picker] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:46:13-56
+147        <provider
+147-->[:expo-image-picker] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:48:9-56:20
+148            android:name="expo.modules.imagepicker.fileprovider.ImagePickerFileProvider"
+148-->[:expo-image-picker] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:49:13-89
+149            android:authorities="com.jimo.mediaapp.ImagePickerFileProvider"
+149-->[:expo-image-picker] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:50:13-75
+150            android:exported="false"
+150-->[:expo-image-picker] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:51:13-37
+151            android:grantUriPermissions="true" >
+151-->[:expo-image-picker] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:52:13-47
+152            <meta-data
+152-->[:expo-file-system] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:27:13-29:70
+153                android:name="android.support.FILE_PROVIDER_PATHS"
+153-->[:expo-file-system] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:28:17-67
+154                android:resource="@xml/image_picker_provider_paths" />
+154-->[:expo-file-system] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:29:17-67
+155        </provider>
+156
+157        <meta-data
+157-->[:expo-modules-core] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-modules-core\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:9:9-11:89
+158            android:name="org.unimodules.core.AppLoader#react-native-headless"
+158-->[:expo-modules-core] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-modules-core\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:10:13-79
+159            android:value="expo.modules.adapters.react.apploader.RNHeadlessAppLoader" />
+159-->[:expo-modules-core] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-modules-core\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-86
+160        <meta-data
+160-->[:expo-modules-core] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-modules-core\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:12:9-15:45
+161            android:name="com.facebook.soloader.enabled"
+161-->[:expo-modules-core] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-modules-core\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-57
+162            android:value="true" />
+162-->[:expo-modules-core] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-modules-core\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-33
+163
+164        <provider
+164-->[com.github.CanHub:Android-Image-Cropper:4.3.1] C:\Users\USER\.gradle\caches\transforms-3\d048bc2aaf9fd18ffb20355d65713a8f\transformed\jetified-Android-Image-Cropper-4.3.1\AndroidManifest.xml:23:9-31:20
+165            android:name="com.canhub.cropper.CropFileProvider"
+165-->[com.github.CanHub:Android-Image-Cropper:4.3.1] C:\Users\USER\.gradle\caches\transforms-3\d048bc2aaf9fd18ffb20355d65713a8f\transformed\jetified-Android-Image-Cropper-4.3.1\AndroidManifest.xml:24:13-63
+166            android:authorities="com.jimo.mediaapp.cropper.fileprovider"
+166-->[com.github.CanHub:Android-Image-Cropper:4.3.1] C:\Users\USER\.gradle\caches\transforms-3\d048bc2aaf9fd18ffb20355d65713a8f\transformed\jetified-Android-Image-Cropper-4.3.1\AndroidManifest.xml:25:13-72
+167            android:exported="false"
+167-->[com.github.CanHub:Android-Image-Cropper:4.3.1] C:\Users\USER\.gradle\caches\transforms-3\d048bc2aaf9fd18ffb20355d65713a8f\transformed\jetified-Android-Image-Cropper-4.3.1\AndroidManifest.xml:26:13-37
+168            android:grantUriPermissions="true" >
+168-->[com.github.CanHub:Android-Image-Cropper:4.3.1] C:\Users\USER\.gradle\caches\transforms-3\d048bc2aaf9fd18ffb20355d65713a8f\transformed\jetified-Android-Image-Cropper-4.3.1\AndroidManifest.xml:27:13-47
+169            <meta-data
+169-->[:expo-file-system] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:27:13-29:70
+170                android:name="android.support.FILE_PROVIDER_PATHS"
+170-->[:expo-file-system] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:28:17-67
+171                android:resource="@xml/library_file_paths" />
+171-->[:expo-file-system] C:\Users\USER\Desktop\Jimo-Media-App\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:29:17-67
+172        </provider>
+173        <provider
+173-->[androidx.emoji2:emoji2:1.2.0] C:\Users\USER\.gradle\caches\transforms-3\15d6f29d99dd2c4bbf713f4f89658ce9\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+174            android:name="androidx.startup.InitializationProvider"
+174-->[androidx.emoji2:emoji2:1.2.0] C:\Users\USER\.gradle\caches\transforms-3\15d6f29d99dd2c4bbf713f4f89658ce9\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
+175            android:authorities="com.jimo.mediaapp.androidx-startup"
+175-->[androidx.emoji2:emoji2:1.2.0] C:\Users\USER\.gradle\caches\transforms-3\15d6f29d99dd2c4bbf713f4f89658ce9\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
+176            android:exported="false" >
+176-->[androidx.emoji2:emoji2:1.2.0] C:\Users\USER\.gradle\caches\transforms-3\15d6f29d99dd2c4bbf713f4f89658ce9\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37
+177            <meta-data
+177-->[androidx.emoji2:emoji2:1.2.0] C:\Users\USER\.gradle\caches\transforms-3\15d6f29d99dd2c4bbf713f4f89658ce9\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+178                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+178-->[androidx.emoji2:emoji2:1.2.0] C:\Users\USER\.gradle\caches\transforms-3\15d6f29d99dd2c4bbf713f4f89658ce9\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
+179                android:value="androidx.startup" />
+179-->[androidx.emoji2:emoji2:1.2.0] C:\Users\USER\.gradle\caches\transforms-3\15d6f29d99dd2c4bbf713f4f89658ce9\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
+180            <meta-data
+180-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\USER\.gradle\caches\transforms-3\dd4fa87d700c7e74c8bc0c4079bd792a\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:29:13-31:52
+181                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+181-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\USER\.gradle\caches\transforms-3\dd4fa87d700c7e74c8bc0c4079bd792a\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:30:17-78
+182                android:value="androidx.startup" />
+182-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\USER\.gradle\caches\transforms-3\dd4fa87d700c7e74c8bc0c4079bd792a\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:31:17-49
+183            <meta-data
+183-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\USER\.gradle\caches\transforms-3\85b05949fc8abcaa871024e6263a3b0e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
+184                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+184-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\USER\.gradle\caches\transforms-3\85b05949fc8abcaa871024e6263a3b0e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
+185                android:value="androidx.startup" />
+185-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\USER\.gradle\caches\transforms-3\85b05949fc8abcaa871024e6263a3b0e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
+186        </provider>
+187
+188        <receiver
+188-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\USER\.gradle\caches\transforms-3\85b05949fc8abcaa871024e6263a3b0e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
+189            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+189-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\USER\.gradle\caches\transforms-3\85b05949fc8abcaa871024e6263a3b0e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
+190            android:directBootAware="false"
+190-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\USER\.gradle\caches\transforms-3\85b05949fc8abcaa871024e6263a3b0e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
+191            android:enabled="true"
+191-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\USER\.gradle\caches\transforms-3\85b05949fc8abcaa871024e6263a3b0e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
+192            android:exported="true"
+192-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\USER\.gradle\caches\transforms-3\85b05949fc8abcaa871024e6263a3b0e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
+193            android:permission="android.permission.DUMP" >
+193-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\USER\.gradle\caches\transforms-3\85b05949fc8abcaa871024e6263a3b0e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
+194            <intent-filter>
+194-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\USER\.gradle\caches\transforms-3\85b05949fc8abcaa871024e6263a3b0e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
+195                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+195-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\USER\.gradle\caches\transforms-3\85b05949fc8abcaa871024e6263a3b0e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
+195-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\USER\.gradle\caches\transforms-3\85b05949fc8abcaa871024e6263a3b0e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
+196            </intent-filter>
+197            <intent-filter>
+197-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\USER\.gradle\caches\transforms-3\85b05949fc8abcaa871024e6263a3b0e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
+198                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+198-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\USER\.gradle\caches\transforms-3\85b05949fc8abcaa871024e6263a3b0e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
+198-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\USER\.gradle\caches\transforms-3\85b05949fc8abcaa871024e6263a3b0e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
+199            </intent-filter>
+200            <intent-filter>
+200-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\USER\.gradle\caches\transforms-3\85b05949fc8abcaa871024e6263a3b0e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
+201                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+201-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\USER\.gradle\caches\transforms-3\85b05949fc8abcaa871024e6263a3b0e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
+201-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\USER\.gradle\caches\transforms-3\85b05949fc8abcaa871024e6263a3b0e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
+202            </intent-filter>
+203            <intent-filter>
+203-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\USER\.gradle\caches\transforms-3\85b05949fc8abcaa871024e6263a3b0e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
+204                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+204-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\USER\.gradle\caches\transforms-3\85b05949fc8abcaa871024e6263a3b0e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
+204-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\USER\.gradle\caches\transforms-3\85b05949fc8abcaa871024e6263a3b0e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
+205            </intent-filter>
+206        </receiver>
+207
+208        <service
+208-->[androidx.room:room-runtime:2.4.2] C:\Users\USER\.gradle\caches\transforms-3\051b4794b2678beac08e99237c2ad128\transformed\room-runtime-2.4.2\AndroidManifest.xml:25:9-28:40
+209            android:name="androidx.room.MultiInstanceInvalidationService"
+209-->[androidx.room:room-runtime:2.4.2] C:\Users\USER\.gradle\caches\transforms-3\051b4794b2678beac08e99237c2ad128\transformed\room-runtime-2.4.2\AndroidManifest.xml:26:13-74
+210            android:directBootAware="true"
+210-->[androidx.room:room-runtime:2.4.2] C:\Users\USER\.gradle\caches\transforms-3\051b4794b2678beac08e99237c2ad128\transformed\room-runtime-2.4.2\AndroidManifest.xml:27:13-43
+211            android:exported="false" />
+211-->[androidx.room:room-runtime:2.4.2] C:\Users\USER\.gradle\caches\transforms-3\051b4794b2678beac08e99237c2ad128\transformed\room-runtime-2.4.2\AndroidManifest.xml:28:13-37
+212    </application>
+213
+214</manifest>
