@@ -25,7 +25,7 @@ const fp = () => {
     let bodyContent = `email=${email}`;
 
     let response = await fetch(
-      "https://jimo-media-backend.onrender.com/users/forgetPassword",
+      "https://jimo-media-backend-o4n3.onrender.com/users/forgetPassword",
       {
         method: "POST",
         body: bodyContent,

@@ -67,7 +67,7 @@ const wallet = () => {
     let bodyContent = `email=${u?.email}`;
 
     let response = await fetch(
-      "https://jimo-media-backend.onrender.com/getUser",
+      "https://jimo-media-backend-o4n3.onrender.com/getUser",
       {
         method: "POST",
         body: bodyContent,
@@ -91,7 +91,7 @@ const wallet = () => {
     };
 
     let response = await fetch(
-      "https://jimo-media-backend.onrender.com/getUsers",
+      "https://jimo-media-backend-o4n3.onrender.com/getUsers",
       {
         method: "POST",
         headers: headersList,
@@ -119,7 +119,7 @@ const wallet = () => {
     let bodyContent = `email=${user?.email}&amount=${sendAmount}&to=${to}`;
 
     let response = await fetch(
-      "https://jimo-media-backend.onrender.com/users/sendMoney",
+      "https://jimo-media-backend-o4n3.onrender.com/users/sendMoney",
       {
         method: "POST",
         body: bodyContent,
@@ -165,11 +165,14 @@ const wallet = () => {
 
     let bodyContent = `email=${user?.email}&amount=2500`;
 
-    let response = await fetch("https://jimo-media-backend.onrender.com/fund", {
-      method: "POST",
-      body: bodyContent,
-      headers: headersList,
-    });
+    let response = await fetch(
+      "https://jimo-media-backend-o4n3.onrender.com/fund",
+      {
+        method: "POST",
+        body: bodyContent,
+        headers: headersList,
+      }
+    );
 
     let data = await response.text();
     console.log(data);
