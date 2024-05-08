@@ -239,7 +239,7 @@ const profile = ({ popup }) => {
               textAlignVertical: "center",
             }}
           >
-            Location
+            {user?.location}
           </Text>
         </View>
         <View
