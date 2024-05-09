@@ -87,7 +87,8 @@ const editprofile = () => {
       console.log(data);
       if (data?.status) {
         setloading(false);
-        router?.push("/pages/home");
+        alert(data.msg);
+        // router?.push("/pages/home");
       }
     } catch (error) {
       setloading(false);
@@ -104,18 +105,23 @@ const editprofile = () => {
         <AuthHeader title={"Edit Profile"} />
         <InputText
           placeholder={"Username"}
+          onChangeText={(e) => setUsername(e)}
           inputPlaceholder={username?.length ? username : "Edit Username"}
         />
         <InputText
           placeholder={"Email"}
+          disabled={false}
+          onChangeText={(e) => setEmail(e)}
           inputPlaceholder={email?.length ? email : "Edit Email"}
         />
         <InputText
           placeholder={"Bio"}
+          onChangeText={(e) => setBio(e)}
           inputPlaceholder={bio?.length ? bio : "Edit Bio"}
         />
         <InputText
           placeholder={"Location"}
+          onChangeText={(e) => setLocation(e)}
           inputPlaceholder={location?.length ? location : "Edit Location"}
         />
         <Button

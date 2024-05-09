@@ -15,6 +15,7 @@ const InputText = ({
   keyboardType,
   onChangeText,
   userStyles,
+  disabled,
 }) => {
   let [eye, seteye] = React.useState(false);
   return (
@@ -68,6 +69,7 @@ const InputText = ({
             outline: "none",
             ...userStyles,
           }}
+          editable={disabled}
           placeholder={inputPlaceholder}
         />
         {type == "password" && (

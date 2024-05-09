@@ -144,9 +144,9 @@ const PostContent = ({ i, liked, data }) => {
           <Image
             source={{ uri: data.image }}
             style={{
-              height: 120,
-              width: "100%",
-              resizeMode: "contain",
+              height: 150,
+              width: Dimensions.get("window").width,
+              resizeMode: "stretch",
               marginTop: 10,
               borderRadius: 5,
               aspectRatio: 0.9,

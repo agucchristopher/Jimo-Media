@@ -38,11 +38,9 @@ const home = () => {
     ).finally(() => setloading(false));
 
     let data = await response.json();
-    console.log("data: ", data);
     let newposts = data.posts;
     // setposts(data.posts);
     setposts(newposts);
-    console.log("first", posts);
   };
   let getUser = async () => {
     let u = await AsyncStorage.getItem("user");
@@ -69,7 +67,6 @@ const home = () => {
     ).finally(() => setloading(false));
 
     let data = await response.json();
-    console.log("data: ", data);
     if (data.status) {
       let jsonUser = JSON.stringify(data?.user);
       await AsyncStorage.setItem("user", jsonUser);

@@ -19,16 +19,22 @@ const profile = ({ popup }) => {
   console.log("Params: ", params);
   let [user, setuser] = useState(params?.owner);
   let [loading, setloading] = useState(false);
+  const [datefmt, setdatefmt] = useState("");
+  const [dd, setdd] = useState("");
   let [You, setYou] = useState(false);
   let title = "";
   let { width, height } = useWindowDimensions();
+  const timestamp = "2024-03-20T16:59:20.471Z";
+
+  // console.log("Date:", day);
+  // console.log("Month:", month);
+  // console.log("Year:", year);
 
   let you = async () => {
-    console.log("********************************");
     let u = await AsyncStorage.getItem("user");
     u = JSON.parse(u);
     let owner = JSON.parse(params?.owner);
-    console.log(owner);
+    // console.log(owner);
     if (owner.id === u?._id) {
       console.log("your profile", u, params?.owner);
       setYou(true);
@@ -56,11 +62,22 @@ const profile = ({ popup }) => {
     let data = await response.json();
     console.log("data: ", data);
     if (data.status) {
+      setdd(data?.user?.dob);
+      console.log(data?.user?.dob);
+      console.log("Dob", dd);
+      const date = new Date(data?.user?.dob);
+
+      const year = date.getFullYear();
+      const month = date.getMonth() + 1; // Months are zero-indexed, so we add 1
+      const day = date.getDate();
+
+      setdatefmt(`${month}/${day}/${year}`);
+      console.log("Dob", dd);
       setuser(data?.user);
     }
   };
   useEffect(() => {
-    getUser();
+    getUser().then(() => {});
     you();
   }, []);
   return (
@@ -111,7 +128,7 @@ const profile = ({ popup }) => {
         {/* Picture */}
         <View style={{ height: 250 }}>
           <ImageBackground
-            source={require("../assets/post.jpg")}
+            source={require("../assets/bbg.jpg")}
             style={{
               height: 200,
               width: width,
@@ -259,7 +276,7 @@ const profile = ({ popup }) => {
           >
             <Path
               fill={"#4D4D4D"}
-              d="M15 3C15.5523 3 16 3.44772 16 4V6H21C21.5523 6 22 6.44772 22 7V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V7C2 6.44772 2.44772 6 3 6H8V4C8 3.44772 8.44772 3 9 3H15ZM16 8H8V19H16V8ZM4 8V19H6V8H4ZM14 5H10V6H14V5ZM18 8V19H20V8H18Z"
+              d="M17,10.039c-3.859,0-7,3.14-7,7,0,3.838,3.141,6.961,7,6.961s7-3.14,7-7c0-3.838-3.141-6.961-7-6.961Zm0,11.961c-2.757,0-5-2.226-5-4.961,0-2.757,2.243-5,5-5s5,2.226,5,4.961c0,2.757-2.243,5-5,5Zm1.707-4.707c.391,.391,.391,1.023,0,1.414-.195,.195-.451,.293-.707,.293s-.512-.098-.707-.293l-1-1c-.188-.188-.293-.442-.293-.707v-2c0-.552,.447-1,1-1s1,.448,1,1v1.586l.707,.707Zm5.293-10.293v2c0,.552-.447,1-1,1s-1-.448-1-1v-2c0-1.654-1.346-3-3-3H5c-1.654,0-3,1.346-3,3v1H11c.552,0,1,.448,1,1s-.448,1-1,1H2v9c0,1.654,1.346,3,3,3h4c.552,0,1,.448,1,1s-.448,1-1,1H5c-2.757,0-5-2.243-5-5V7C0,4.243,2.243,2,5,2h1V1c0-.552,.448-1,1-1s1,.448,1,1v1h8V1c0-.552,.447-1,1-1s1,.448,1,1v1h1c2.757,0,5,2.243,5,5Z"
             />
           </Svg>
           <Text
@@ -270,7 +287,7 @@ const profile = ({ popup }) => {
               textAlignVertical: "center",
             }}
           >
-            Workplace
+            {datefmt}
           </Text>
         </View>
         <View
