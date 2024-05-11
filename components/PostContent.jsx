@@ -145,7 +145,7 @@ const PostContent = ({ i, liked, data }) => {
             source={{ uri: data.image }}
             style={{
               height: 150,
-              width: Dimensions.get("window").width,
+              width: Dimensions.get("screen").width,
               resizeMode: "stretch",
               marginTop: 10,
               borderRadius: 5,
