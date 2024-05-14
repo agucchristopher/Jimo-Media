@@ -19,6 +19,7 @@ const profile = ({ popup }) => {
   console.log("Params: ", params);
   let [user, setuser] = useState(params?.owner);
   let [loading, setloading] = useState(false);
+  let [posts, setposts] = useState([]);
   const [datefmt, setdatefmt] = useState("");
   const [dd, setdd] = useState("");
   let [You, setYou] = useState(false);
@@ -26,10 +27,32 @@ const profile = ({ popup }) => {
   let { width, height } = useWindowDimensions();
   const timestamp = "2024-03-20T16:59:20.471Z";
 
-  // console.log("Date:", day);
-  // console.log("Month:", month);
-  // console.log("Year:", year);
+  let getPosts = async () => {
+    console.log("Getting User Posts...");
+    setloading(true);
+    let headersList = {
+      Accept: "*/*",
+      "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+      "Content-Type": "application/x-www-form-urlencoded",
+    };
 
+    let bodyContent = `email=${user?.email}`;
+
+    let response = await fetch(
+      "https://jimo-media-backend-o4n3.onrender.com/post/getUserPosts",
+      {
+        method: "POST",
+        body: bodyContent,
+        headers: headersList,
+      }
+    ).finally(() => setloading(false));
+
+    let data = await response.json();
+    let newposts = data.posts;
+    console.log(newposts);
+    // setposts(data.posts);
+    setposts(newposts);
+  };
   let you = async () => {
     let u = await AsyncStorage.getItem("user");
     u = JSON.parse(u);
@@ -77,7 +100,10 @@ const profile = ({ popup }) => {
     }
   };
   useEffect(() => {
-    getUser().then(() => {});
+    getUser().then(() => {
+      getPosts();
+    });
+    getPosts().then(() => {});
     you();
   }, []);
   return (
@@ -290,7 +316,7 @@ const profile = ({ popup }) => {
             {datefmt}
           </Text>
         </View>
-        <View
+        {/* <View
           style={{
             marginLeft: 15,
             flexDirection: "row",
@@ -320,7 +346,8 @@ const profile = ({ popup }) => {
           >
             Education
           </Text>
-        </View>
+        </View> */}
+        <br />
       </ScrollView>
     </SafeAreaView>
   );

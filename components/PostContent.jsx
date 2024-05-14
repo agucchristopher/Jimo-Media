@@ -10,18 +10,7 @@ const PostContent = ({ i, liked, data }) => {
   let [likedContent, setlikedContent] = useState(liked);
   const [svgContent, setSvgContent] = useState(null);
   const snapPoints = useMemo(() => ["1%", "50%", "70%"], []);
-  useEffect(() => {
-    // Fetch the SVG content from an external URL
-    fetch(
-      "https://avatar.oxro.io/avatar.svg?name=Jabulani&background=6ab04c&color=000"
-    )
-      .then((response) => response.text())
-      .then((svgData) => {
-        console.log(svgData);
-        setSvgContent(svgData);
-      })
-      .catch((error) => console.error("Error fetching SVG:", error));
-  }, []);
+  useEffect(() => {}, []);
   let randomColors = () => {
     let hash = Math.round(Math.random() * 10);
     let colors = ["000039", "ffa500", "00ff00", "ff0000"];

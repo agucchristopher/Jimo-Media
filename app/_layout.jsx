@@ -43,26 +43,23 @@ export default function RootLayout() {
           statusBarStyle: "dark",
         }}
       >
-        {user == null || undefined ? (
-          <>
-            <Stack.Screen
-              name="index"
-              options={{
-                headerShown: false,
-                statusBarColor: Colors.primary,
-                statusBarStyle: "light",
-              }}
-            />
-            <Stack.Screen name="signin" options={{ headerShown: false }} />
-            <Stack.Screen name="signup" options={{ headerShown: false }} />
-            <Stack.Screen name="fp" options={{ headerShown: false }} />
-            <Stack.Screen name="otp" options={{ headerShown: false }} />
-            <Stack.Screen
-              name="resetPassword"
-              options={{ headerShown: false }}
-            />
-          </>
-        ) : null}
+        {/* {user == null || undefined ? ( */}
+        {/* // <> */}
+        <Stack.Screen
+          name="index"
+          options={{
+            headerShown: false,
+            statusBarColor: Colors.primary,
+            statusBarStyle: "light",
+          }}
+        />
+        <Stack.Screen name="signin" options={{ headerShown: false }} />
+        <Stack.Screen name="signup" options={{ headerShown: false }} />
+        <Stack.Screen name="fp" options={{ headerShown: false }} />
+        <Stack.Screen name="otp" options={{ headerShown: false }} />
+        <Stack.Screen name="resetPassword" options={{ headerShown: false }} />
+        {/* </> */}
+        {/* // ) : null} */}
         <Stack.Screen name="pages" options={{ headerShown: false }} />
         <Stack.Screen name="makePost" options={{ headerShown: false }} />
         <Stack.Screen name="profile" options={{ headerShown: false }} />
