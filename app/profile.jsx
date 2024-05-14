@@ -103,7 +103,6 @@ const profile = ({ popup }) => {
     getUser().then(() => {
       getPosts();
     });
-    getPosts().then(() => {});
     you();
   }, []);
   return (
@@ -347,7 +346,6 @@ const profile = ({ popup }) => {
             Education
           </Text>
         </View> */}
-        <br />
       </ScrollView>
     </SafeAreaView>
   );

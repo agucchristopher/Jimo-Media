@@ -11,6 +11,16 @@ import { router } from "expo-router";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 const signup = () => {
+  let [username, setusername] = useState("");
+  let [email, setemail] = useState("");
+  let [password, setpassword] = useState("");
+  let [dob, setdob] = useState("");
+  let [formattedDate, setformattedDate] = useState("");
+  let [loading, setloading] = useState(false);
+  let [popup, setpopup] = useState(false);
+  let [status, setstatus] = useState(false);
+  let [message, setmessage] = useState("");
+
   const [selectedDate, setSelectedDate] = useState(null);
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
@@ -23,26 +33,19 @@ const signup = () => {
   };
 
   const handleConfirm = (date) => {
+    setdob(date);
     setSelectedDate(date);
     hideDatePicker();
+    setformattedDate(formatDate(date));
   };
-
   const formatDate = (date) => {
-    if (!date) return "";
+    if (!date) return null;
     const formattedDate = `${date.getDate()}/${
       date.getMonth() + 1
     }/${date.getFullYear()}`;
-    setdob(formattedDate);
     return formattedDate;
+    // return "help";
   };
-  let [username, setusername] = useState("");
-  let [email, setemail] = useState("");
-  let [password, setpassword] = useState("");
-  let [dob, setdob] = useState("");
-  let [loading, setloading] = useState(false);
-  let [popup, setpopup] = useState(false);
-  let [status, setstatus] = useState(false);
-  let [message, setmessage] = useState("");
   let register = async () => {
     console.log("..");
     setloading(true);
@@ -114,9 +117,7 @@ const signup = () => {
         {/* )} */}
         <Dropdown
           placeholder={"Date Of Birth"}
-          inputPlaceholder={
-            selectedDate ? formatDate(selectedDate) : "DD/MM/YYYY"
-          }
+          inputPlaceholder={formattedDate ? formattedDate : "DD/MM/YYYY"}
           onPress={showDatePicker}
         />
         <Button
