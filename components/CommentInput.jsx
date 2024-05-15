@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { View, TextInput, Button, StyleSheet, Alert } from "react-native";
 
-const CommentInput = ({ onSend, onChangeText }) => {
+const CommentInput = ({ onSend, onChangeText, loading }) => {
   const [comment, setComment] = useState("");
 
   const handleSend = () => {
@@ -23,10 +23,10 @@ const CommentInput = ({ onSend, onChangeText }) => {
         // value={comment}
         onChangeText={(e) => {
           onChangeText(e);
-          console.log(e);
+          //   console.log(e);
         }}
       />
-      <Button title="Send" onPress={handleSend} />
+      <Button title="Send" onPress={() => handleSend()} />
     </View>
   );
 };

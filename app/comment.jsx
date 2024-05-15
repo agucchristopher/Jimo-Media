@@ -24,6 +24,7 @@ const comments = ({ popup }) => {
   let [commnts, setcommnts] = useState();
   let [newcomment, setnewcomment] = useState();
   let [loading, setloading] = useState(false);
+  let [posting, setposting] = useState(false);
   const getComments = async () => {
     setloading(true);
     let headersList = {
@@ -50,6 +51,7 @@ const comments = ({ popup }) => {
   };
   const postComment = async () => {
     console.log("Posting...");
+    setposting(true);
     let headersList = {
       Accept: "*/*",
       "User-Agent": "Thunder Client (https://www.thunderclient.com)",
@@ -66,8 +68,10 @@ const comments = ({ popup }) => {
       method: "POST",
       body: bodyContent,
       headers: headersList,
-    });
-
+    })
+      .then(() => setposting(false))
+      .finally(() => setposting(false));
+    getComments();
     let data = await response.text();
     console.log(data);
   };
@@ -143,7 +147,7 @@ const comments = ({ popup }) => {
       </ScrollView>
       <CommentInput
         onChangeText={(e) => setnewcomment(e)}
-        onSend={postComment()}
+        onSend={() => postComment()}
       />
     </SafeAreaView>
   );
