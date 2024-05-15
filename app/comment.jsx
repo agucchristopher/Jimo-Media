@@ -37,11 +37,14 @@ const comments = ({ popup }) => {
       postID,
     });
 
-    let response = await fetch("http://localhost:8080/post/getComments", {
-      method: "POST",
-      body: bodyContent,
-      headers: headersList,
-    })
+    let response = await fetch(
+      "https://jimo-media-backend-o4n3.onrender.com/post/getComments",
+      {
+        method: "POST",
+        body: bodyContent,
+        headers: headersList,
+      }
+    )
       .finally(() => setloading(false))
       .catch(() => setloading(false));
 
@@ -64,15 +67,18 @@ const comments = ({ popup }) => {
       content: newcomment,
     });
 
-    let response = await fetch("http://localhost:8080/post/makeComment", {
-      method: "POST",
-      body: bodyContent,
-      headers: headersList,
-    })
+    let response = await fetch(
+      "https://jimo-media-backend-o4n3.onrender.com/post/makeComment",
+      {
+        method: "POST",
+        body: bodyContent,
+        headers: headersList,
+      }
+    )
       .then(() => setposting(false))
       .finally(() => setposting(false));
     getComments();
-    let data = await response.text();
+    let data = await response?.json();
     console.log(data);
   };
   useEffect(() => {
@@ -146,6 +152,7 @@ const comments = ({ popup }) => {
         />
       </ScrollView>
       <CommentInput
+        loading={posting}
         onChangeText={(e) => setnewcomment(e)}
         onSend={() => postComment()}
       />

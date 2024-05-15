@@ -1,7 +1,14 @@
 // src/CommentInput.js
 
 import React, { useState } from "react";
-import { View, TextInput, Button, StyleSheet, Alert } from "react-native";
+import {
+  View,
+  TextInput,
+  Button,
+  StyleSheet,
+  Alert,
+  Pressable,
+} from "react-native";
 
 const CommentInput = ({ onSend, onChangeText, loading }) => {
   const [comment, setComment] = useState("");
@@ -26,7 +33,14 @@ const CommentInput = ({ onSend, onChangeText, loading }) => {
           //   console.log(e);
         }}
       />
-      <Button title="Send" onPress={() => handleSend()} />
+      {/* <Pressable onPress={() => onSend()}> */}
+      <Button
+        onPress={() => onSend()}
+        disabled={loading}
+        color={"green"}
+        title={loading ? "Sending..." : "Send"}
+      />
+      {/* </Pressable> */}
     </View>
   );
 };
