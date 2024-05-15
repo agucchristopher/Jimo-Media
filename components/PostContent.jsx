@@ -186,6 +186,12 @@ const PostContent = ({ i, liked, data }) => {
             alignItems: "center",
             justifyContent: "center",
           }}
+          onPress={() =>
+            router.push({
+              pathname: "/comment",
+              params: { owner: JSON.stringify({ id: data._id }) },
+            })
+          }
         >
           <Svg
             xmlns="http://www.w3.org/2000/svg"

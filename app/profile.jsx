@@ -1,6 +1,8 @@
 import {
+  FlatList,
   Image,
   ImageBackground,
+  RefreshControl,
   ScrollView,
   Text,
   TouchableOpacity,
@@ -14,10 +16,17 @@ import { router } from "expo-router";
 import { Colors } from "../assets/data";
 import { useLocalSearchParams } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import PostContent from "../components/PostContent";
+// import { json } from "express";
 const profile = ({ popup }) => {
   let params = useLocalSearchParams();
+  params = JSON.stringify(params);
+  params = JSON.parse(params);
   console.log("Params: ", params);
+  let parsedID = JSON.parse(params?.owner);
+  console.log("parsedID: ", parsedID);
   let [user, setuser] = useState(params?.owner);
+  let [userID, setuserID] = useState(parsedID?.id);
   let [loading, setloading] = useState(false);
   let [posts, setposts] = useState([]);
   const [datefmt, setdatefmt] = useState("");
@@ -39,7 +48,7 @@ const profile = ({ popup }) => {
     let bodyContent = `email=${user?.email}`;
 
     let response = await fetch(
-      "https://jimo-media-backend-o4n3.onrender.com/post/getUserPosts",
+      "https://jimo-media-backend-o4n3.onrender.com/post/getPosts",
       {
         method: "POST",
         body: bodyContent,
@@ -47,9 +56,17 @@ const profile = ({ popup }) => {
       }
     ).finally(() => setloading(false));
 
-    let data = await response.json();
-    let newposts = data.posts;
-    console.log(newposts);
+    let data = await response?.json();
+    let parsed = JSON.stringify(data);
+    console.log(parsed);
+    parsed = JSON.parse(parsed);
+    console.log(parsed);
+    console.log("UserID: ", parsedID.id);
+    console.log(parsed.posts);
+    let newposts = parsed?.posts.filter((item) => {
+      return item.owner.username == `aguchris`;
+    });
+    console.log("Your Posts: ", newposts);
     // setposts(data.posts);
     setposts(newposts);
   };
@@ -149,7 +166,12 @@ const profile = ({ popup }) => {
         ) : null}
         <View style={{ width: "20%" }}></View>
       </View>
-      <ScrollView style={{ flex: 1, backgroundColor: "white", padding: 10 }}>
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={loading} onRefresh={() => getUser()} />
+        }
+        style={{ flex: 1, backgroundColor: "white", padding: 10 }}
+      >
         {/* Picture */}
         <View style={{ height: 250 }}>
           <ImageBackground
@@ -281,7 +303,7 @@ const profile = ({ popup }) => {
               textAlignVertical: "center",
             }}
           >
-            {user?.location}
+            {user?.location ? user?.location : "Nigeria"}
           </Text>
         </View>
         <View
@@ -315,6 +337,40 @@ const profile = ({ popup }) => {
             {datefmt}
           </Text>
         </View>
+        <Text
+          style={{
+            fontFamily: "PBold",
+            margin: 15,
+            marginBottom: 5,
+            fontSize: 16,
+          }}
+        >
+          My Posts
+        </Text>
+        <FlatList
+          data={posts}
+          renderItem={({ index, item }) => {
+            return (
+              <PostContent
+                i={index}
+                data={item}
+                liked={index < 1 ? true : false}
+                key={index}
+              />
+            );
+          }}
+        />
+        {!loading && posts.length == [] ? (
+          <Text
+            style={{
+              margin: 15,
+              textAlign: "center",
+              fontFamily: "MMedium",
+            }}
+          >
+            No Posts to show
+          </Text>
+        ) : null}
         {/* <View
           style={{
             marginLeft: 15,

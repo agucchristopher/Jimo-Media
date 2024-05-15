@@ -41,11 +41,14 @@ const editprofile = () => {
 
     let bodyContent = `email=${u?.email}`;
 
-    let response = await fetch("https://jimo-media-backend-o4n3.onrender.com/getUser", {
-      method: "POST",
-      body: bodyContent,
-      headers: headersList,
-    });
+    let response = await fetch(
+      "https://jimo-media-backend-o4n3.onrender.com/getUser",
+      {
+        method: "POST",
+        body: bodyContent,
+        headers: headersList,
+      }
+    );
 
     let data = await response.json();
     if (data.status) {
@@ -103,6 +106,7 @@ const editprofile = () => {
         <InputText
           placeholder={"Username"}
           onChangeText={(e) => setUsername(e)}
+          disabled={false}
           inputPlaceholder={username?.length ? username : "Edit Username"}
         />
         <InputText

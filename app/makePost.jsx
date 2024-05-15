@@ -99,12 +99,12 @@ const makePost = () => {
         }
       ).catch((err) => console.log(err));
       console.log(response);
-      let data = await response.json();
-      console.log(data);
-      if (data?.status) {
-        setcontent("");
-        router?.push("/pages/home");
-      }
+      let data = await response?.json();
+      // console.log(data);
+      // if (data?.status) {
+      setcontent("");
+      router?.push("/pages/home");
+      // }
     } catch (error) {
       setloading(false);
       console.log(error);
