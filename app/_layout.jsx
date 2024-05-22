@@ -1,42 +1,31 @@
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import { useEffect, useState } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Colors } from "../assets/data";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-
+import { SafeAreaView } from "react-native-safe-area-context";
+import { ActivityIndicator } from "react-native";
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  let [user, setuser] = useState();
   const [loaded, error] = useFonts({
     MBold: require("../assets/fonts/Montserrat-SemiBold.ttf"),
     MMedium: require("../assets/fonts/Montserrat-Medium.ttf"),
     PBold: require("../assets/fonts/Poppins-SemiBold.ttf"),
   });
 
-  useEffect(() => {
-    let checkUser = async () => {
-      let cuser = await AsyncStorage.getItem("user");
-      console.log("User: ", cuser);
-      setuser("cuser");
-    };
-    checkUser();
-    if (loaded) {
-      checkUser();
-    }
-    SplashScreen.hideAsync();
-  }, []);
-
   if (!loaded) {
-    return null;
+    return (
+      <SafeAreaView
+        style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+      >
+        <ActivityIndicator size={"large"} style={{}} color={Colors.primary} />
+      </SafeAreaView>
+    );
   }
-
   return (
     <>
       <Stack
-        initialRouteName={user == null || undefined ? "index" : "pages"}
+        initialRouteName={"index"}
         screenOptions={{
           headerShown: false,
           statusBarColor: "#fff",
