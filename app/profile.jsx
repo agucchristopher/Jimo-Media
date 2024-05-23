@@ -64,7 +64,7 @@ const profile = ({ popup }) => {
     console.log("UserID: ", parsedID.id);
     console.log(parsed.posts);
     let newposts = parsed?.posts.filter((item) => {
-      return item.owner.username == `aguchris`;
+      return item.owner.username == user?.username;
     });
     console.log("Your Posts: ", newposts);
     // setposts(data.posts);

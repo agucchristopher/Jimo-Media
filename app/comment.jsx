@@ -14,6 +14,7 @@ import { Svg, Path } from "react-native-svg";
 import { router, useLocalSearchParams } from "expo-router";
 import moment from "moment";
 import CommentInput from "../components/CommentInput";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 const comments = ({ popup }) => {
   let title = "Comments";
   let params = useLocalSearchParams();
@@ -83,6 +84,7 @@ const comments = ({ popup }) => {
     console.log(data);
   };
   let getUser = async () => {
+    console.log("Getting User...");
     let u = await AsyncStorage.getItem("user");
     u = JSON.parse(u);
     let headersList = {
@@ -109,11 +111,12 @@ const comments = ({ popup }) => {
       await AsyncStorage.setItem("user", jsonUser);
     }
     u = await AsyncStorage.getItem("user");
+    console.log(u);
     setuser(JSON.parse(u));
   };
   useEffect(() => {
-    getComments();
     getUser();
+    getComments();
   }, []);
 
   return (
