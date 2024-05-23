@@ -27,6 +27,7 @@ const profile = ({ popup }) => {
   console.log("parsedID: ", parsedID);
   let [user, setuser] = useState(params?.owner);
   let [userID, setuserID] = useState(parsedID?.id);
+  let [userName, setuserName] = useState(parsedID?.username);
   let [loading, setloading] = useState(false);
   let [posts, setposts] = useState([]);
   const [datefmt, setdatefmt] = useState("");
@@ -63,8 +64,9 @@ const profile = ({ popup }) => {
     console.log(parsed);
     console.log("UserID: ", parsedID.id);
     console.log(parsed.posts);
+    console.log(user?.username);
     let newposts = parsed?.posts.filter((item) => {
-      return item.owner.username == user?.username;
+      return item.owner.username == userName;
     });
     console.log("Your Posts: ", newposts);
     // setposts(data.posts);
