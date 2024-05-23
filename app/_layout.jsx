@@ -4,7 +4,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { Colors } from "../assets/data";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ActivityIndicator } from "react-native";
-SplashScreen.preventAutoHideAsync();
+// SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
@@ -25,7 +25,7 @@ export default function RootLayout() {
   return (
     <>
       <Stack
-        initialRouteName={"index"}
+        // initialRouteName={"index"}
         screenOptions={{
           headerShown: false,
           statusBarColor: "#fff",

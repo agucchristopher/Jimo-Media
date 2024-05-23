@@ -21,6 +21,7 @@ const comments = ({ popup }) => {
   owner = JSON.parse(owner);
   console.log(owner);
   let [postID, setpostID] = useState(owner?.id);
+  let [user, setuser] = useState();
   let [commnts, setcommnts] = useState();
   let [newcomment, setnewcomment] = useState();
   let [loading, setloading] = useState(false);
@@ -63,7 +64,7 @@ const comments = ({ popup }) => {
 
     let bodyContent = JSON.stringify({
       postID: postID,
-      email: "aguchris740@gmail.com",
+      email: user?.email,
       content: newcomment,
     });
 
@@ -81,8 +82,38 @@ const comments = ({ popup }) => {
     let data = await response?.json();
     console.log(data);
   };
+  let getUser = async () => {
+    let u = await AsyncStorage.getItem("user");
+    u = JSON.parse(u);
+    let headersList = {
+      Accept: "*/*",
+      "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+      "Content-Type": "application/x-www-form-urlencoded",
+    };
+
+    let bodyContent = `email=${u?.email}`;
+
+    let response = await fetch(
+      "https://jimo-media-backend-o4n3.onrender.com/getUser",
+      {
+        method: "POST",
+        body: bodyContent,
+        headers: headersList,
+      }
+    ).finally(() => setloading(false));
+
+    let data = await response.json();
+    console.log("data: ", data);
+    if (data.status) {
+      let jsonUser = JSON.stringify(data?.user);
+      await AsyncStorage.setItem("user", jsonUser);
+    }
+    u = await AsyncStorage.getItem("user");
+    setuser(JSON.parse(u));
+  };
   useEffect(() => {
     getComments();
+    getUser();
   }, []);
 
   return (
