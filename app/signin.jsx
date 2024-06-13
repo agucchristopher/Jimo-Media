@@ -39,6 +39,7 @@ const signin = () => {
         setloading(false);
         setstatus(false);
         setmessage(err.message);
+        alert("Error", err.message);
         setTimeout(() => {
           setpopup(false);
         }, 2000);
@@ -50,6 +51,7 @@ const signin = () => {
       setpopup(true);
       setstatus(data.status);
       setmessage(data.message);
+      alert(data.message);
       setTimeout(() => {
         setpopup(false);
         setTimeout(() => {
@@ -64,7 +66,7 @@ const signin = () => {
   };
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
-      {popup ? <Toast status={status} mesage={message} /> : null}
+      {/* {popup ? <Toast status={status} mesage={message} /> : null} */}
       <ScrollView style={{ flex: 1, backgroundColor: "white", height: "100%" }}>
         <AuthHeader title={"Log In"} />
         <InputText
